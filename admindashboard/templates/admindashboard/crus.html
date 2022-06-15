@@ -1,0 +1,52 @@
+{% extends 'base/admin_layout.html' %}
+{% load static %}
+{% block title %}
+    Admin Report
+{% endblock %}
+{% block additional_head %}
+    <link href="{% static 'css/admin_report.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block main_content %}   
+<div class="table-responsive mt-3">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Suspicious User</th>
+                <th scope="col">reported By</th>
+                <th scope="col">Status</th>
+                <th scope="col">Modify Status</th>
+                <th scope="col">Reported Message</th>
+                <th scope="col">Replied Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row" class="Numbering"></td>
+                <td>{{reportUser.suspicious_user.username}}</td>
+                <td>{{reportUser.reported_by.username}}</td>
+                <td>{{reportUser.get_status_display}}</td>
+                <td>                        
+                    <form class="form status", method="POST">
+                        {% csrf_token %}
+                        {{form.status}}                                   
+                        <button  class="btn mt-3 change_status" type="submit">Modify</button>   
+                    </form>  
+                </td>
+                <td>{{reportUser.reported_message}}</td>
+                <td>{{reportUser.replied_message}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div> 
+{% endblock %}
+
+{% block additional_body %}
+<script>
+    document.getElementsByTagName("input")[0].placeholder="Search Businesses"
+</script>
+<script src="{% static 'js/numbering.js' %}"></script>
+{% endblock %}
+
+

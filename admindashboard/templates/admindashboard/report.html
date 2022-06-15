@@ -1,0 +1,65 @@
+{% extends 'base/admin_layout.html' %}
+{% load static %}
+{% block title %}
+    Admin Report
+{% endblock %}
+{% block additional_head %}
+    <link href="{% static 'css/admin_report.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block main_content %}   
+<div class="container-fluid mt-3">
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <div class="success_message alert alert-success mb-3 text-center" role="alert"><span class="fas fa-check-circle me-2"></span>{{message}}</div>
+        {% endif %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="error_message alert alert-danger mb-3 text-center" role="alert"><span class="fas fa-exclamation-triangle me-2"></span>{{message}}</div>
+        {% endif %}
+    {% endfor %}       
+</div>    
+<div class="search_box mt-3">
+    <form class="form" method="GET">
+        {{reportUser_filter.form}}
+        <button class="btn" type="submit"><span class="fas fa-search"></span></button>
+    </form>
+</div>
+<div class="table-responsive mt-3">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Suspicious User</th>
+                <th scope="col">reported By</th>
+                <th scope="col">Status</th>
+                <th scope="col">Reported Message</th>
+                <th scope="col">Replied Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in reportUser %}
+                <tr>
+                    <td scope="row" class="Numbering"></td>
+                    <td>{{i.suspicious_user.username}}</td>
+                    <td>{{i.reported_by.username}}</td>
+                    <td class="status">
+                        {{i.get_status_display}}                                                    
+                        <a href="{% url 'admindashboard:change-reportUSer-status' i.id %}" class="btn mt-3 change_status" type="submit">Change Status</a>
+                    </td>
+                    <td>{{i.reported_message}}</td>
+                    <td>{{i.replied_message}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div> 
+{% endblock %}
+
+{% block additional_body %}
+<script>
+    document.getElementsByTagName("input")[0].placeholder="Search Businesses"
+</script>
+<script src="{% static 'js/numbering.js' %}"></script>
+{% endblock %}
+
+

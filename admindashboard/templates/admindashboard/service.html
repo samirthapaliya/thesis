@@ -1,0 +1,106 @@
+{% extends 'base/admin_layout.html' %}
+{% load static %}
+{% load bootstrap %}
+{% block title %}
+    Admin Service
+{% endblock %}
+{% block additional_head %}
+    <link href="{% static 'css/admin_service.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block main_content %}
+<div class="container-fluid mt-3">
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <div class="success_message alert alert-success mb-3 text-center" role="alert"><span class="fas fa-check-circle me-2"></span>{{message}}</div>
+        {% endif %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="error_message alert alert-danger mb-3 text-center" role="alert"><span class="fas fa-exclamation-triangle me-2"></span>{{message}}</div>
+        {% endif %}
+    {% endfor %}       
+</div>    
+<div class="Sauv m-auto">        
+    <div class="card px-2 py-2">        
+        <form class="form mb-2 px-2 m-auto search" method="GET">
+            <h1 class="text-center">Search Services</h1>
+            <div class="search_form mb-2">
+                <label class="form-label me-1">Name:</label>
+                {{service_filter.form.name}}
+    
+                <label class="form-label me-1">Is Active:</label>                
+                {{service_filter.form.is_active}}                    
+            </div>
+            <div class="text-center search_btn">
+                <button class="btn me-1 mb-2" type="submit">Search</button>
+                <a href="{% url 'admindashboard:service-list' %}" class="btn mb-2" type="submit">Show All</a>
+            </div>
+        </form>  
+        <div class="dropdown-divider"></div>
+        <form class="form m-auto operation_form", method="POST", enctype="multipart/form-data">
+            <h1 class="text-center mb-3">Add New Services inside <span>Ghar<span>Dailo</span></span></h1>  
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Icon Text:</label>
+                {{form.icon_text}}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Name:</label>
+                {{form.name}}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Color:</label>
+                {{form.color}}
+            </div> 
+            <div class="mb-3">
+                <label class="form-label">Is Active:</label>
+                {{form.is_active}}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Descriptions:</label>
+                {{form.description}}
+            </div>
+            <div class="text-center">
+                <button class="btn operation_button" type="submit">{{BTM}} Service</button>
+            </div>
+        </form>
+    </div>          
+    <div class="table-responsive">
+        <table class="table table-sm table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Logo</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Active</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in services %}
+                    <tr>
+                        <td scope="row" class="Numbering"></td>
+                        <td><span class="fas {{i.icon_text}}"></span></td>
+                        <td>{{i.name}}</td>
+                        <td>{{i.color}}</td>
+                        <td>{{i.is_active}}</td>
+                        <td>{{i.description}}</td>
+                        <td>
+                            <a href="{% url 'admindashboard:service-update' i.id %}"><span class="fas fa-pen-alt ms-3 me-3 mb-3 edit"></span></a>
+                            <a href="{% url 'admindashboard:service-delete' i.id %}"  onclick="return confirm('Are you sure about removing this service?')"><span class="fas fa-trash remove"></span></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+</div> 
+{% endblock %}
+
+{% block additional_body %}
+    <script src="{% static 'js/numbering.js' %}"></script>
+    <script src="{% static 'js/admin_service.js' %}"></script>
+{% endblock %}
+
+

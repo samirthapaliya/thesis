@@ -1,0 +1,82 @@
+{% extends 'base/admin_layout.html' %}
+{% load static %}
+{% block title %}
+    Admin Dashboard
+{% endblock %}
+{% block additional_head %}
+<link href="{% static 'css/admin_customer.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block main_content %}
+<div class="container-fluid search_box mt-3">
+    <form class="form" method="GET">
+        {{customer_filter.form.name}}
+        <button class="btn" type="submit"><span class="fas fa-search"></span></button>
+    </form>
+</div>
+<div class="table-responsive mt-3 me-2">
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">User</th>
+                <th scope="col">Name</th>
+                <th scope="col">Profile</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Province</th>
+                <th scope="col">City</th>
+                <th scope="col">Street</th>
+                <th scope="col">Active</th>
+                <th scope="col">Modify Activeness</th>
+                <th scope="col">View</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in customers %}
+                <tr>
+                    <td scope="row" class="Numbering"></td>
+                    <td>{{i.user.username}}</td>
+                    <td>{{i.name}}</td>
+                    <td>                         
+                        {% if i.image.url != "/media/static/Image/default.jpg" %}
+                            <img class="img-fluid rounded-circle" src="{{i.image.url}}" alt="" />
+                        {% else %}
+                            <img class="img-fluid rounded-circle" src="/{{i.image}}" alt="" />
+                        {% endif %}
+                    </td>
+                    <td>{{i.phone}}</td>
+                    <td>{{i.province}}</td>
+                    <td>{{i.city}}</td>
+                    <td>{{i.street_address}}</td>
+                    <td>                        
+                        {% if i.is_active == True %}
+                        <span class="fas fa-check-circle"></span>
+                        {% else %}
+                        <span class="fas fa-times-circle"></span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if i.is_active == False %}
+                        <a href="{% url 'admindashboard:make-customer-active' i.id %}" class="active" onclick="return confirm('Do you want activate this customer?')"><span class="fas fa-check-circle"></span></a>
+                        {% else %}
+                        <a href="{% url 'admindashboard:make-customer-inactive' i.id %}" class="inactive" onclick="return confirm('Do you want inactivate this customer?')"><span class="fas fa-times-circle"></span></a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'admindashboard:view-customer' i.id %}"><span class="fas fa-eye me-3 mb-3 edit"></span></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div> 
+{% endblock %}
+
+{% block additional_body %}
+<script>
+    document.getElementsByTagName("input")[0].placeholder="Search Customers"
+</script>
+<script src="{% static 'js/numbering.js' %}"></script>
+{% endblock %}
+
+

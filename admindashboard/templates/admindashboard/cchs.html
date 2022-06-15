@@ -1,0 +1,67 @@
+{% extends 'base/admin_layout.html' %}
+{% load static %}
+{% block title %}
+    Admin Customer View
+{% endblock %}
+{% block additional_head %}
+<link href="{% static 'css/admin_customer_view.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block main_content %}      
+<div class="container-fluid mt-3">
+    <a href="{% url 'admindashboard:my-admin-customer-list-view' %}"><span class="fas fa-arrow-left back mt-2"></span></a>
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="profile m-auto mt-3">                       
+            {% if pc.image.url != "/media/static/Image/default.jpg" %}
+                <img class="img-fluid" src="{{pc.image.url}}" alt="" />
+            {% else %}
+                <img class="img-fluid" src="/{{pc.image}}" alt="" />
+            {% endif %}
+        </div>
+    </div>
+    <div class="hires navdiv mt-3 p-3">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Business Name</th>
+                        <th scope="col">Business Profile</th>
+                        <th scope="col">Service</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Modify Status</th>
+                        <th scope="col">DateTime</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">1.</td>
+                        <td>{{hire.business_service.business.name}}</td>
+                        <td>
+                            {% if hire.business_service.business.logo %}
+                                <img class="img-fluid rounded-circle" src="{{hire.business_service.business.logo.url}}" />
+                            {% else %}
+                                No logo
+                            {% endif %}
+                        </td>
+                        <td><span class="{{hire.business_service.service.icon_text}}"></span>  {{hire.business_service.service}}</td>
+                        <td>{{hire.get_status_display}}</td>
+                        <td>
+                            <form class="form hire_status_form", method="POST">
+                                {% csrf_token %}
+                                {{form.status}}                                   
+                                <button  class="btn mt-3 change_status" type="submit">Modify</button>   
+                            </form>  
+                        </td>
+                        <td>{{hire.date_time}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> 
+    </div>
+{% endblock %}
+
+{% block additional_body %}
+{% endblock %}
+
+
