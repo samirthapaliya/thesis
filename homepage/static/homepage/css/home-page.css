@@ -169,11 +169,11 @@ h6 {
   transition: 0.5s;
   margin-top: 30px;
   color: #fff;
-  background: #2487ce;
+  background: #093b60;
 }
 
 #hero .btn-get-started:hover {
-  background: #3194db;
+  background: #0a538a;
 }
 
 #hero .icon-boxes {
@@ -678,7 +678,7 @@ section {
 }
 
 .services .iconbox-blue i {
-  color: #47aeff;
+  color: #0860a1;
 }
 
 .services .iconbox-blue:hover .icon i {
@@ -686,7 +686,7 @@ section {
 }
 
 .services .iconbox-blue:hover .icon path {
-  fill: #47aeff;
+  fill: #0860a1;
 }
 
 .services .iconbox-orange i {
@@ -958,7 +958,10 @@ section {
   position: relative;
 }
 
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
+.portfolio-details
+  .portfolio-details-slider
+  .swiper-pagination
+  .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   background-color: #fff;
@@ -966,7 +969,10 @@ section {
   border: 1px solid #2487ce;
 }
 
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
+.portfolio-details
+  .portfolio-details-slider
+  .swiper-pagination
+  .swiper-pagination-bullet-active {
   background-color: #2487ce;
 }
 

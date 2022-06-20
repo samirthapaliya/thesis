@@ -1,0 +1,405 @@
+{% extends 'base/layout.html' %}
+{% load static %}
+{% block title %}
+Ghar Dailo
+{% endblock %}
+
+{% block additional_head %}
+<meta content="" name="description" />
+<meta content="" name="keywords" />
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+  rel="stylesheet" />
+<script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+
+<!-- Vendor CSS Files -->
+<link href="{% static 'homepage/vendor/aos/aos.css' %}" rel="stylesheet" />
+<link href="{% static 'homepage/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
+<link href="{% static 'homepage/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet" />
+<link href="{% static 'homepage/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet" />
+<link href="{% static 'homepage/vendor/remixicon/remixicon.css' %}" rel="stylesheet" />
+<link href="{% static 'homepage/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet" />
+
+
+<!-- Template Main CSS File -->
+<link href="{% static 'homepage/css/home-page.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block main_content %}
+
+
+<main id="main">
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>About Us and How It Started </h2>
+      </div>
+      <p class="text-center">
+        When we have house problems like water leakage or electrical issues, the first thing we do is search for a plumber or electrician that meets our needs. But what if we don't find them or they are not available at the time? What if we have just moved to a new location? We will face a lot of extra problems, so we came up with the idea of A1 service finder. A1 service finder offers a variety of services connected to your everyday problems. Our platform makes it simple to engage people to fix your difficulties. A1 service finder also provides individuals with employment opportunities and assists businesses in expanding their services by cooperating with them.
+      </p>
+    </div>
+
+
+
+    </div>
+  </section>
+  <!-- End About Section -->
+
+  <section id="counts" class="counts section-bg">
+    <div class="container">
+      <div class="row justify-content-end">
+        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+          <div class="count-box">
+            <span data-purecounter-start="0" data-purecounter-end="{{countcustomer}}" data-purecounter-duration="2"
+              class="purecounter"></span>
+            <p>Total Users</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+          <div class="count-box">
+            <span data-purecounter-start="0" data-purecounter-end="{{countbusiness}}" data-purecounter-duration="2"
+              class="purecounter"></span>
+            <p>Total Business Registered</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+          <div class="count-box">
+            <span data-purecounter-start="0" data-purecounter-end="{{countservice}}" data-purecounter-duration="2"
+              class="purecounter"></span>
+            <p>Available Services</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+          <div class="count-box">
+            <span data-purecounter-start="0" data-purecounter-end="65" data-purecounter-duration="2"
+              class="purecounter"></span>
+            <p>Experience</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Testimonials Section ======= -->
+  {% if testimonials %}
+  <section id="testimonials" class="testimonials">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Testimonials</h2>
+
+      </div>
+      <div class="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay="100">
+        <div class="swiper-wrapper">
+          {% for testimonial in testimonials %}
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                {{testimonial.message}}
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+
+
+              {% if testimonial.user.is_customer %}
+              {{testimonial.user.customer.name}}
+              {% if testimonial.user.customer.image %}
+              <img src="{{ testimonial.user.customer.image.url }}" class="testimonial-img" alt="" />
+              {% else %}
+              <image src="{% static 'Image/admin.jpg' %}" class="testimonial-img" alt="" />
+              {% endif %}
+              {% elif testimonial.user.is_business %}
+              {{testimonial.user.business.name}}
+              {% if testimonial.user.business.logo %}
+              <img src="{{ testimonial.user.business.logo.url }}" class="testimonial-img" alt="" />
+              {% else %}
+              <image src="{% static 'Image/admin.jpg' %}" class="testimonial-img" alt="" />
+              {% endif %}
+              {% elif testimonial.user.is_staff %}
+              Anonymous
+              <image src="{% static 'Image/admin.jpg' %}" class="testimonial-img" alt="" />
+
+              {% endif %}
+
+
+            </div>
+          </div>
+          <!-- End testimonial item -->
+          {% endfor %}
+
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+  <!-- End Testimonials Section -->
+
+  <!-- ======= Portfolio Section ======= -->
+  <section id="portfolio" class="portfolio">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Portfolio</h2>
+
+      </div>
+
+      <div class="row" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-lg-12 d-flex justify-content-center">
+
+        </div>
+      </div>
+
+      <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="300">
+
+        <div class="col-lg-4 col-md-6 portfolio-item">
+          <div class="portfolio-wrap">
+            <img src="{% static 'homepage/img/portfolio/Plumbing.jpg' %}" class="img-fluid" alt="" />
+            <div class="portfolio-info">
+              <h4>Plumbing</h4>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item ">
+          <div class="portfolio-wrap">
+            <img src="{% static 'homepage/img/portfolio/carpenter.jpg' %}" class="img-fluid" alt="" />
+            <div class="portfolio-info">
+              <h4>Carpenter and Furnishing </h4>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 portfolio-item ">
+          <div class="portfolio-wrap">
+            <img src="{% static 'homepage/img/portfolio/bulb.jpg' %}" class="img-fluid" alt="" />
+            <div class="portfolio-info">
+              <h4>Electricity and Electrician </h4>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item ">
+          <div class="portfolio-wrap">
+            <img src="{% static 'homepage/img/portfolio/Photographer.jpg' %}" class="img-fluid" alt="" />
+            <div class="portfolio-info">
+              <h4> Photographer </h4>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item ">
+          <div class="portfolio-wrap">
+            <img src="{% static 'homepage/img/portfolio/painter.jpg' %}" class="img-fluid" alt="" />
+            <div class="portfolio-info">
+              <h4>Painting</h4>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item ">
+          <div class="portfolio-wrap">
+            <img src="{% static 'homepage/img/portfolio/homeshifting.jpg' %}" class="img-fluid" alt="" />
+            <div class="portfolio-info">
+              <h4> Home Shifting </h4>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Portfolio Section -->
+
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>
+        </p>
+      </div>
+      <div>
+        <iframe style="border: 0; width: 100%; height: 270px"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.357116714305!2d85.32781251501534!3d27.706258082792374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19c4f53018d1%3A0x2c9602e69b406e27!2sSoftwarica%20College%20-%20Block%20E!5e0!3m2!1sen!2snp!4v1632387695369!5m2!1sen!2snp"
+          frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-lg-4">
+          <div class="info">
+            <div class="address">
+              <i class="bi bi-geo-alt"></i>
+              <h4>Location:</h4>
+              <p>Dillibazar, Kathmandu</p>
+            </div>
+
+            <div class="email">
+              <i class="bi bi-envelope"></i>
+              <h4>Email:</h4>
+              <p>a1servicefinder@gmail.com</p>
+            </div>
+
+            <div class="phone">
+              <i class="bi bi-phone"></i>
+              <h4>Call:</h4>
+              <p>+977 123456878</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8 mt-5 mt-lg-0">
+          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required />
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-3">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required />
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required />
+            </div>
+            <div class="form-group mt-3">
+              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+            </div>
+            <div class="my-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">
+                Your message has been sent. Thank you!
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Contact Section -->
+</main>
+<!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 footer-contact">
+          <h3> <img class="img-fluid" src="{% static 'img/navbar/logo.png' %}"> 
+          </h3>
+          <p>
+            <b>Kathmandu Nepal</b>
+            <br>
+
+            <strong>Phone:</strong> <b>1234567890</b> <br>
+            <strong>Email:</strong> <b>a1servicefinder@gmail.com</b>
+          </p>
+        </div>
+
+        <div class="col-lg-2 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li>
+              <i class="bx bx-chevron-right"></i> <a href="{% url 'home'%}">Home</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i> <a href="{% url 'about-us'%}">About us</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i> <a href="{% url 'business:business-list-page'%}">Get Service</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i>
+              <a href="#">Terms of service</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i>
+              <a href="#">Privacy policy</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li>
+              <i class="bx bx-chevron-right"></i> <a href="{% url 'customer-services'%}">Plumbing</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i>
+              <a href="{% url 'customer-services'%}">Electrician</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i>
+              <a href="{% url 'customer-services'%}">Photographer</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i> <a href="{% url 'customer-services'%}">Carpenter and Furnishing</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i>
+              <a href="{% url 'customer-services'%}">View All Servieces</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6 footer-newsletter">
+          <h4>A1 service finder</h4>
+          <p>
+            Join A1 service finder, Today for quality and efficient services.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container d-md-flex py-4">
+    <div class="me-md-auto text-center text-md-start">
+      <div class="copyright">
+        &copy; Copyright <strong><span>A1 service {% now 'Y' %}</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+      </div>
+    </div>
+
+    <div class="social-links text-center text-md-right pt-3 pt-md-0">
+      <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+      <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+      <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+      <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+      <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+    </div>
+  </div>
+</footer>
+<!-- End Footer -->
+
+{% endblock %}
+
+
+{% block additional_body %}
+<!-- Vendor JS Files -->
+<script src="{% static 'homepage/vendor/aos/aos.js' %}"></script>
+<script src="{% static 'homepage/vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'homepage/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'homepage/vendor/php-email-form/validate.js' %}"></script>
+<script src="{% static 'homepage/vendor/purecounter/purecounter.js' %}"></script>
+<script src="{% static 'homepage/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+
+<!-- Template Main JS File -->
+<script src="{% static 'homepage/js/home-page.js' %}"></script>
+{% endblock %}
