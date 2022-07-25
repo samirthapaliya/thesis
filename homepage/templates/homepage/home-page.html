@@ -1,0 +1,614 @@
+{% extends 'base/layout.html' %}
+{% load static %}
+{% block title %}
+A1 Service finder | Home
+{% endblock %}
+
+{% block additional_head %}
+<meta content="" name="description" />
+<meta content="" name="keywords" />
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+  rel="stylesheet" />
+<script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+
+<!-- Vendor CSS Files -->
+<link href="{% static 'homepage/vendor/aos/aos.css' %}" rel="stylesheet" />
+<link href="{% static 'homepage/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
+<link href="{% static 'homepage/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet" />
+<link href="{% static 'homepage/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet" />
+<link href="{% static 'homepage/vendor/remixicon/remixicon.css' %}" rel="stylesheet" />
+<link href="{% static 'homepage/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet" />
+
+
+<!-- Template Main CSS File -->
+<link href="{% static 'homepage/css/home-page.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block main_content %}
+
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center">
+  <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+    <div class="row justify-content-center">
+      <div class="col-xl-7 col-lg-9 text-center">
+        <h1><img class="img-fluid" src="{% static 'img/navbar/logo.png' %}"> 
+        </h1>
+        <span><small class="mb-4"> <b>A team of professional always ready for most of your daily problems</b>
+          </small></span>
+      </div>
+    </div>
+    <br>
+    {% if request.user.is_authenticated %}
+    <div class="mt-5">
+      <div class="row d-flex justify-content-center">
+        <!-- Custom rounded search bars with input group -->
+        <div class="col-md-8">
+          <form method="GET" action="{% url 'business:business-list-page' %}">
+            <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button id="button-addon2" type="submit" class="btn btn-link text-warning"><i
+                      class="fa fa-search"></i></button>
+                </div>
+                <input type="search" name="q" value="{{query}}" placeholder="What're you searching for?"
+                  aria-describedby="button-addon2" class="form-control border-0 bg-light">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% else %}
+
+    <div id="container" >
+      <div id="text"></div>
+      <div id="cursor" ></div>
+    </div>
+    <br>
+
+    <div class="text-center">
+      <span><a href="{% url 'business-registration' %}" class="btn-get-started scrollto ms-4 me-4"> Sign Up As Business
+        </a>
+        <a href="{% url 'customer-registration' %}" class="btn-get-started scrollto">Sign Up As Customer </a>
+      </span>
+    </div>
+
+    {% endif %}
+    <br>
+
+
+    <div class="row icon-boxes">
+      <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-3 mb-lg-0" data-aos="zoom-in" data-aos-delay="200">
+
+
+        <div class="icon-box">
+          <span class="iconify-inline" data-icon="emojione:construction-worker" style="color: blue;" data-width="80"
+            data-height="80" data-flip="horizontal"></span>
+          <h4 class="title"><a href="">Skilled Manpower</a></h4>
+          <p class="description">
+            We have skilled and equipped manpower
+            to solve your problems.
+          </p>
+
+
+
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="300">
+        <div class="icon-box">
+          <span class="iconify" data-icon="clarity:shield-check-solid" style="color: blue;" data-width="80"
+            data-height="80"></span>
+          <h4 class="title"><a href="">Guarantee Service Quality</a></h4>
+          <p class="description">
+            We believes in Quality so we always
+            ensure to provide Quality services to our
+            customers.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="400">
+        <div class="icon-box">
+          <span class="iconify-inline" data-icon="ic:sharp-speed" style="color: blue;" data-width="80" data-height="80"
+            data-flip="horizontal"></span>
+          <h4 class="title"><a href="">Efficiency</a></h4>
+          <p class="description">
+            We believes in Efficiency too so we always
+            ensure to provide Efficient services to our
+            customers.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="500">
+        <div class="icon-box">
+          <span class="iconify-inline" data-icon="la:tools" style="color: blue;" data-width="80" data-height="80"
+            data-flip="horizontal"></span>
+          <h4 class="title"><a href="">Different Services</a></h4>
+          <p class="description">
+            We provides the different
+            kinds of services which customer needs in daily
+            life. You can see more in Our Service section
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Hero -->
+
+<main id="main">
+
+  <!-- ======= Counts Section ======= -->
+  <section id="counts" class="counts section-bg">
+    <div class="container">
+      <div class="row justify-content-end">
+        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+          <div class="count-box">
+            <span data-purecounter-start="0" data-purecounter-end="{{countcustomer}}" data-purecounter-duration="2"
+              class="purecounter"></span>
+            <p>Total Users</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+          <div class="count-box">
+            <span data-purecounter-start="0" data-purecounter-end="{{countbusiness}}" data-purecounter-duration="2"
+              class="purecounter"></span>
+            <p>Total Business Registered</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+          <div class="count-box">
+            <span data-purecounter-start="0" data-purecounter-end="{{countservice}}" data-purecounter-duration="2"
+              class="purecounter"></span>
+            <p>Available Services</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+          <div class="count-box">
+            <span data-purecounter-start="0" data-purecounter-end="{{hiring_completed}}" data-purecounter-duration="2"
+              class="purecounter"></span>
+            <p>Hiring Completed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Counts Section -->
+
+  <!-- ======= About Video Section ======= -->
+  <section id="about-video" class="about-video">
+    <div class="container" data-aos="fade-up">
+      <div class="row">
+        <div class="col-lg-6 video-box align-self-baseline" data-aos="fade-right" data-aos-delay="100">
+          <img src="{% static 'homepage/img/A1service.png' %}" class="img-fluid" alt="" />
+          <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4" data-vbtype="video"
+            data-autoplay="true"></a> -->
+        </div>
+
+        <div class="col-lg-6 pt-3 pt-lg-0 content" data-aos="fade-left" data-aos-delay="100">
+          <h5 class="mt-1">
+            <b>Our objectives </b>
+          </h5>
+
+          <ul>
+            <li>
+              <i class="bx bx-check-double"></i>
+              To Provide Quality Services
+            </li>
+            <li>
+              <i class="bx bx-check-double"></i>
+              To ensure customer satisfaction
+            </li>
+            <li>
+              <i class="bx bx-check-double"></i>
+              To provide and Add different kinds of services in near future
+            </li>
+
+          </ul>
+          <h5 class="mt-2">
+            <b>Our Aim </b>
+          </h5>
+
+          <p>
+            The aim of A1 service team is to be the most Trustable,
+            Affordable and Quality Service Provider all over Nepal.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End About Video Section -->
+
+  <!-- ======= Testimonials Section ======= -->
+  {% if testimonials %}
+  <section id="testimonials" class="testimonials">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Testimonials</h2>
+
+      </div>
+      <div class="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay="100">
+        <div class="swiper-wrapper">
+          {% for testimonial in testimonials %}
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <p>
+                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                {{testimonial.message}}
+                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+
+              <h3>
+                {% if testimonial.user.is_customer %}
+                {{testimonial.user.customer.name}}
+                {% if testimonial.user.customer.image %}
+                <img src="{{ testimonial.user.customer.image.url }}" class="testimonial-img" alt="" />
+                {% else %}
+                <image src="{% static 'Image/admin.jpg' %}" class="testimonial-img" alt="" />
+                {% endif %}
+                {% elif testimonial.user.is_business %}
+                {{testimonial.user.business.name}}
+                {% if testimonial.user.business.logo %}
+                <img src="{{ testimonial.user.business.logo.url }}" class="testimonial-img" alt="" />
+                {% else %}
+                <image src="{% static 'Image/admin.jpg' %}" class="testimonial-img" alt="" />
+                {% endif %}
+                {% elif testimonial.user.is_staff %}
+                Anonymous
+                <image src="{% static 'Image/admin.jpg' %}" class="testimonial-img" alt="" />
+
+                {% endif %}
+
+            </div>
+          </div>
+          <!-- End testimonial item -->
+          {% endfor %}
+
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+  <!-- End Testimonials Section -->
+
+  <!-- ======= Services Section ======= -->
+  <section id="services" class="services section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2> Available Services</h2>
+
+      </div>
+
+      <div class="row">
+        {% for service in services %}
+        <div class="col-md-3 p-3" data-aos="zoom-in" data-aos-delay="100">
+        <a href="{% url 'business:business-list-page' %}?q={{service.name}}">
+          <div class="icon-box iconbox-blue">
+            <div class="icon">
+              <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                <path stroke="none" stroke-width="0" fill="#f5f5f5"
+                  d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174">
+                </path>
+              </svg>
+              <i class="fas {{service.icon_text}}"></i>
+            </div>
+            <h4>{{service.name}}</h4>
+            <p>
+              {{service.description}}
+            </p>
+          </div>
+        </a>
+        </div>
+        {% endfor %}
+
+
+
+      </div>
+    </div>
+  </section>
+  <!-- End Sevices Section -->
+
+  <!-- ======= Cta Section ======= -->
+  <section id="cta" class="cta">
+    <div class="container" data-aos="zoom-in">
+      <div class="text-center">
+        <h3>Grow Your Business</h3>
+        <p>
+          A solid online presence is crucial to the success of every professional and business in this fast-paced,
+          convenience-focused digital age. By limiting membership to just top-rated businesses, A1 service finder adds
+          legitimacy to all the businesses.
+        </p>
+        <a class="cta-btn" href="{% url 'business-registration' %}">Register Now</a>
+      </div>
+    </div>
+  </section>
+  <!-- End Cta Section -->
+
+  <!-- ======= Portfolio Section ======= -->
+  <section id="portfolio" class="portfolio">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Portfolio</h2>
+
+      </div>
+
+      <div class="row" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-lg-12 d-flex justify-content-center">
+
+        </div>
+      </div>
+
+      <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="300">
+
+        <div class="col-lg-4 col-md-6 portfolio-item">
+          <div class="portfolio-wrap">
+            <img src="{% static 'homepage/img/portfolio/Plumbing.jpg' %}" class="img-fluid" alt="" />
+            <div class="portfolio-info">
+              <h4>Plumbing</h4>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item ">
+          <div class="portfolio-wrap">
+            <img src="{% static 'homepage/img/portfolio/carpenter.jpg' %}" class="img-fluid" alt="" />
+            <div class="portfolio-info">
+              <h4>Carpenter and Furnishing </h4>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 portfolio-item ">
+          <div class="portfolio-wrap">
+            <img src="{% static 'homepage/img/portfolio/bulb.jpg' %}" class="img-fluid" alt="" />
+            <div class="portfolio-info">
+              <h4>Electricity and Electrician </h4>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item ">
+          <div class="portfolio-wrap">
+            <img src="{% static 'homepage/img/portfolio/Photographer.jpg' %}" class="img-fluid" alt="" />
+            <div class="portfolio-info">
+              <h4> Photographer </h4>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item ">
+          <div class="portfolio-wrap">
+            <img src="{% static 'homepage/img/portfolio/painter.jpg' %}" class="img-fluid" alt="" />
+            <div class="portfolio-info">
+              <h4>Painting</h4>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item ">
+          <div class="portfolio-wrap">
+            <img src="{% static 'homepage/img/portfolio/homeshifting.jpg' %}" class="img-fluid" alt="" />
+            <div class="portfolio-info">
+              <h4> Home Shifting </h4>
+              <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </section>
+  <!-- End Portfolio Section -->
+
+  <!-- ======= Frequently Asked Questions Section ======= -->
+  <section id="faq" class="faq section-bg">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+
+      </div>
+
+      <div class="faq-list">
+        <ul>
+          <li data-aos="fade-up">
+            <i class="bx bx-help-circle icon-help"></i>
+            <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">How to Join A1 service finder ?
+              <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+            <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+              <p>
+                You can join A1 service finder by simply signing up. You can sign up with two
+                options sign up as user and SignUp as Business so do it as per your
+                requirement.
+              </p>
+            </div>
+          </li>
+
+          <li data-aos="fade-up" data-aos-delay="100">
+            <i class="bx bx-help-circle icon-help"></i>
+            <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">How to get service from
+              A1 service finder ?
+              <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+            <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                First of all create new account if you havent done yet, then
+                select the services you need or available in A1 service website then
+                Book the business or person and hire them to solve your issues.
+              </p>
+            </div>
+          </li>
+
+          <li data-aos="fade-up" data-aos-delay="200">
+            <i class="bx bx-help-circle icon-help"></i>
+            <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">What are the services A1 service finder
+              provide ?
+              <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+            <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                We provide different services that you need in your
+                daily life, You can visit our service section for more.
+                Also you can give your suggestion and feedback through
+                Email.
+              </p>
+            </div>
+          </li>
+
+          <li data-aos="fade-up" data-aos-delay="300">
+            <i class="bx bx-help-circle icon-help"></i>
+            <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed"> How is the service of A1 service finder
+              ? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+            <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                A1 service finder has a team of skilled manpower and we always
+                ensure to give quality service to our customers.
+              </p>
+            </div>
+          </li>
+
+          <li data-aos="fade-up" data-aos-delay="400">
+            <i class="bx bx-help-circle icon-help"></i>
+            <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Does A1 service finder have Mobile App ?
+              <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+            <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                For now we only have webservice but in future
+                we will be launching Mobile App too.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- End Frequently Asked Questions Section -->
+
+
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 footer-contact">
+          <h3> <img class="img-fluid" src="{% static 'img/navbar/logo.png' %}"> 
+          </h3>
+          <p>
+            <b>Kathmandu Nepal</b>
+            <br>
+
+            <strong>Phone:</strong> <b>1234567890</b> <br>
+            <strong>Email:</strong> <b>a1servicefinder@gmail.com</b>
+          </p>
+        </div>
+
+        <div class="col-lg-2 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li>
+              <i class="bx bx-chevron-right"></i> <a href="{% url 'home'%}">Home</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i> <a href="{% url 'about-us'%}">About us</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i> <a href="{% url 'business:business-list-page'%}">Get Service</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i>
+              <a href="#">Terms of service</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i>
+              <a href="#">Privacy policy</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li>
+              <i class="bx bx-chevron-right"></i> <a href="{% url 'customer-services'%}">Plumbing</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i>
+              <a href="{% url 'customer-services'%}">Electrician</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i>
+              <a href="{% url 'customer-services'%}">Photographer</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i> <a href="{% url 'customer-services'%}">Carpenter and Furnishing</a>
+            </li>
+            <li>
+              <i class="bx bx-chevron-right"></i>
+              <a href="{% url 'customer-services'%}">View All Servieces</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6 footer-newsletter">
+          <h4>A1 service finder</h4>
+          <p>
+            Join A1 service finder, Today for quality and efficient services.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container d-md-flex py-4">
+    <div class="me-md-auto text-center text-md-start">
+      <div class="copyright">
+        &copy; Copyright <strong><span>A1 service {% now 'Y' %}</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+      </div>
+    </div>
+
+    <div class="social-links text-center text-md-right pt-3 pt-md-0">
+      <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+      <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+      <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+      <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+      <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+    </div>
+  </div>
+</footer>
+<!-- End Footer -->
+
+  {% endblock %}
+
+
+  {% block additional_body %}
+  <!-- Vendor JS Files -->
+  <script src="{% static 'homepage/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'homepage/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'homepage/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'homepage/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'homepage/vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static 'homepage/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'homepage/js/home-page.js' %}"></script>
+  {% endblock %}
