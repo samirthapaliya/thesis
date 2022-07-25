@@ -1,0 +1,82 @@
+{% load custom_tags %}
+{% load static %}
+{% url 'home' as customer_home_page %}
+{% url 'customer-services' as customer_service_page %}
+{% url 'login' as login_page %}
+{% url 'customer-registration' as customer_registration_page %}
+{% url 'business-registration' as business_registration_page %}
+{% url 'about-us' as about_us_page %}
+{% url 'business:business-list-page' as business_list_page %}
+<div class="container-fluid" id="Header">
+  <nav class="navbar navbar-expand-sm navbar-default">
+    <h1>
+      <a class="img-fluid" href="{% url 'home' %}" ><img class="img-fluid" src="{% static 'img/navbar/logo.png' %}" id="Logo" /></a>
+    </h1>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item mx-sm-1">
+          <a class="nav-link {% if request.path == customer_home_page %}active{% endif %}" href="{{customer_home_page}}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item mx-sm-1">
+          <a class="nav-link {% if request.path == customer_service_page %}active{% endif %}" href="{{customer_service_page}}">Services</a>
+        </li>
+        <li class="nav-item mx-sm-1">
+          {% if not user.is_authenticated or user.is_customer %}
+          <a class="nav-link {% if request.path == business_list_page %}active{% endif %}" href="{{business_list_page}}">Business</a>
+          {% else %}
+            <a class="nav-link" href="{% if request.user.is_business %}{% url 'adminbusiness:business-dash' %}{% elif request.user.is_worker %}{% url 'worker:worker-dashboard' %}{% elif request.user.is_staff %}{% url 'admindashboard:my-admin-dashboard' %}{% endif %}">Dashboard</a>
+          {% endif %}
+        </li>
+        <li class="nav-item mx-sm-1">
+          <a class="nav-link {% if request.path == about_us_page %}active{% endif %}" href="{{about_us_page}}">About Us</a>
+        </li>
+      </ul>
+      {% if user.is_authenticated %}
+      {% if user.is_customer %}
+      <ul class="nav navbar-nav navbar-right mt-4 me-4">
+      {% show_notifications %}    
+      </ul>
+      {% endif %}  
+      {% endif %}  
+      <div class="mt-3 me-4" id="UDA">
+        {% if user.is_authenticated %}
+          {% if request.user.is_customer %}
+          <img class="img-fluid rounded-circle mb-2 me-1" id="Profile" src="{{request.user.customer.image.url}}" onclick="open_dropdown()"/>
+          {% elif request.user.is_business %}
+          <img class="img-fluid rounded-circle mb-2 me-1" id="Profile" src="{{request.user.business.logo.url}}" onclick="open_dropdown()"/>
+          {% elif request.user.is_worker %}
+          <img class="img-fluid rounded-circle mb-2 me-1" id="Profile" src="{{request.user.worker.picture.url}}" onclick="open_dropdown()"/>
+          {% endif %} 
+        {% else %}
+        <a class="btn btn-outline-success  " onclick="open_dropdown()" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          Get started
+        </a>
+        {% endif %}
+        <span class=" dropdown-opener" onclick="open_dropdown()"></span>
+        <div class="dropdown-content">
+          {% if user.is_authenticated %}
+            <a class="mb-1 fw-bold{% if request.user.is_staff %} disabled{% endif %}{{ active_profile }}" 
+            href="{% if request.user.is_customer %}{% url 'customer:customerprofile' %}
+            {% elif request.user.is_business %}{% url 'adminbusiness:edit-business-profile-dash' %}
+            {% elif request.user.is_worker %}{% url 'worker:worker-dashboard' %}{% endif %}" id="Username">
+            {% if request.user.is_customer %}{{request.user.customer.name}}
+            {% elif request.user.is_business %}{{request.user.business.name}}
+            {% elif request.user.is_worker %}{{request.user.worker.name}}{% else %}
+            {{request.user.username}}{% endif %}</a> 
+            <li class="dropdown-divider"></li>
+            <a class="mb-1 lgo" href="{% url 'logout' %}">Log out</a>
+          {% else %}
+          <li><a class="dropdown-item  {% if request.path == login_page %}active_login{% endif %}" href="{{login_page}}" ><span>Login</span></a></li> 
+          <li><a class="dropdown-item {% if request.path == customer_registration_page %}active_customer{% endif %}" href="{{customer_registration_page}}"><span>Register</span></a></li>  
+          <li><a class="dropdown-item {% if request.path == business_registration_page %}active_business{% endif %}" href="/mybusiness/register/""><span>Business Register</span></a></li>   
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
