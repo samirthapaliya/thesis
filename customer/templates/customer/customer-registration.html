@@ -1,0 +1,114 @@
+{% extends 'base/layout.html' %}
+{% load static %}
+{% load class_tag_filter %}
+
+{% block title %}
+Customer Registration
+{% endblock %}
+
+{% block additional_head %}
+<link rel="stylesheet" href="{% static 'customer/css/customer-registration.css' %}">
+{% endblock %}
+{% block main_content %}
+<div class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+  <div class="container">
+    <div class="my-5 card login-card">
+      <div class="row justify-content-center no-0">
+        {% comment %} <div class="col-md-6 d-none d-lg-block text-center">
+          <img src="{% static 'img/svg/people-search-svg.svg' %}" class="mt-5" height="500" width="500" alt="">
+        </div> {% endcomment %}
+        <div class="col-lg-10 col-md-12">
+          <div class="card-body">
+            <p class="login-card-description">Customer Registration</p>
+            <form method="POST">
+              {% csrf_token %}
+              <div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="id_name" class="sr-only">Full Name</label>
+                    {{form.name|addclass:'form-control'|addplaceholder:'Full Name'}}
+                  </div>
+                  <div class="col-md-6">
+                    <label for="id_username" class="sr-only">Username</label>
+                    {{form.username|addclass:'form-control'|addplaceholder:'Username'}}
+                  </div>
+                  {{ form.name.errors }}
+                  {{ form.username.errors }}
+                </div>
+              </div>
+
+             
+
+
+              <div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="id_email" class="sr-only">Email</label>
+                    {{form.email|addclass:'form-control'|addplaceholder:'Email'}}
+                  </div>
+                  <div class="col-md-6">
+                    <label for="id_phone" class="sr-only">Phone</label>
+                    {{form.phone|addclass:'form-control'|addplaceholder:'Phone'}}
+                  </div>
+                  {{ form.email.errors }}
+                  {{ form.phone.errors }}
+                </div>
+              </div>
+              <div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="id_province" class="sr-only">Province</label>
+                    {{form.province|addclass:'form-control'|addplaceholder:'Province'}}
+                  </div>
+                  <div class="col-md-6">
+                    <label for="id_city" class="sr-only">City</label>
+                    {{form.city|addclass:'form-control'|addplaceholder:'City'}}
+                  </div>
+                  {{ form.city.errors }}
+                  {{ form.province.errors }}
+                </div>
+              </div>
+
+              <div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label for="id_street_address" class="sr-only">Street Address</label>
+                    {{ form.street_address.errors }}
+                    {{form.street_address|addclass:'form-control'|addplaceholder:'Street Address'}}
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="id_password1" class="sr-only">Password</label>
+                    {{form.password1|addclass:'form-control'|addplaceholder:'Password'}}
+                  </div>
+                  <div class="col-md-6">
+                    <label for="id_password2" class="sr-only">Confirm Password</label>
+                    {{form.password2|addclass:'form-control'|addplaceholder:'Confirm Password'}}
+                  </div>
+                  {{ form.password2.errors }}
+                  {{ form.password1.errors }}
+                </div>
+              </div>
+              {% for error in form.non_field_errors %}
+              <div class="alert alert-danger">
+                {{ error|escape }}
+              </div>
+              {% endfor %}
+              <button name="login" id="login" class="btn btn-block register-btn mb-4" value="Register">Register</button>
+            </form>
+            <p class="login-card-footer-text " >or</p>
+            <p class="login-card-footer-text " ><a href="{% url 'business-registration' %}"
+              
+                class="">Business Registeration</a></p>
+            <p class="login-card-footer-text">Already have an account? <a href="{% url 'login' %}"
+                class="text-reset">Login Here</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
