@@ -1,0 +1,43 @@
+{% load static %}
+<li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true"
+        aria-expanded="false"><i class="fas fa-bell fa-lg position-relative">
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info"
+                style="font-size:0.7rem;">
+                {{notifications.count}} <span class="visually-hidden">unread messages</span></span>
+        </i></a>
+    <ul class="dropdown-menu notify-drop pull-right">
+        <div class="notify-drop-title">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">New Notifications(<b>{{notifications.count}}</b>)</div>
+            </div>
+        </div>
+        <!-- end notify title -->
+        <!-- notify content -->
+        <div class="drop-content">
+            {% if notifications %}
+            {% for notification in notifications %}
+            <a href="{% url 'customer:hire-notification-api' notification.pk %}">
+                <div class="notifications-item">
+                    {% if notification.from_user.business.logo %}
+                    <img src="{{object.from_user.business.logo.url}}">
+                    {% else %}
+                    <img src="{% static 'business/images/profile/building_company.png' %}">
+                    {% endif %}
+                    <div class="text">
+                        <h4>{{notification.title}}</h4>
+                        <p><b class="text-secondary">{{notification.from_user.business.name}}</b>
+                            {{notification.message}}</p>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+            {% else %}
+            <p class="text-center">No Unread Notifications</p>
+            {% endif %}
+        </div>
+        <div class="notify-drop-footer text-center">
+            <a href="{% url 'customer:customer-all-notification-page' %}"><i class="fa fa-eye"></i> View All</a>
+        </div>
+    </ul>
+</li>
