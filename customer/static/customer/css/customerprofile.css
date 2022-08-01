@@ -1,0 +1,63 @@
+/* style for profile image circle */
+#profileimage {
+  width: auto;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* For hiding default choose file button */
+input[type="file"] {
+  display: none;
+}
+
+#change-image-text {
+  cursor: pointer;
+}
+
+.btn-change-pass{
+  margin-top: 10px;
+  background-color: #093B60;
+  align-items: center;
+  border-color: #093b60;
+  font-size: 16px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  margin-left: 2rem;
+}
+
+.btn-change-pass:hover{
+  background-color: #093B60;
+}
+
+.btn-update{
+  margin-top: 10px;
+  background-color: #093B60;
+  align-items: center;
+  border-color: #093b60;
+  font-size: 16px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.btn-update:hover{
+  background-color: #093B60;  
+}
+.left-card{
+border: 0;
+border-radius: 27.5px;
+box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
+overflow: hidden;
+height: auto;
+}
+
+.right-card{
+  border: 0;
+border-radius: 27.5px;
+box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
+overflow: hidden;
+height: auto;
+
+}

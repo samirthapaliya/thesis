@@ -1,0 +1,110 @@
+{% extends 'base/layout.html' %}
+{% load bootstrap %}
+{% load static %}
+
+
+{% block title %}
+Customer Profile Page
+{% endblock %}
+{% block additional_head %}
+
+<link rel="stylesheet" href="{% static 'customer/css/customerprofile.css' %}">
+{% endblock %}
+{% block main_content %}
+<div class="container">
+  {% include 'customer/components/min-nav-profile.html' %}
+  <div class="row">
+
+    <form method="POST" enctype="multipart/form-data">
+
+      {% csrf_token %}
+      <!--Row-->
+      <div class="row">
+        <!--Column-->
+        <div class="col-md-6 col-lg-4 d-flex justify-content-center mb-3" >
+          <div class="card left-card" style="width: 18rem;">
+            <div class="row mx-auto d-block m-3">
+              <img class="card-img-top" class="rounded-circle" src="{{ request.user.customer.image.url }}"
+                id="profileimage">
+            </div>
+            <div class="card-body">
+              <input type='file' id="id_image" name="image" accept="image/*" >
+              <label class="input-button text-primary" id="change-image-text" for="id_image" style="color: #093B60; margin-left: 5rem;">
+                <i class="fas fa-camera " style="color: #093B60;"></i> <span style="color: #093B60;">Change</span>
+              </label>
+
+
+
+              <h5 class="card-title" style="color: #093B60; margin-top: 1rem; text-align: center;">About Me</h5>
+              <p class="card-text" >
+                <h6> <i class="fas fa-user" ></i> {{request.user.customer.name}}</h6>
+                <h6> <i class="fas fa-signature"></i> {{request.user.username}}</h6>
+                <h6> <i class="fas fa-phone-alt"></i> {{request.user.customer.phone}}</h6>
+                <h6> <i class="fas fa-envelope"></i> {{request.user.email}}</h6>
+                <h6> <i class="fas fa-map-marker-alt"></i></i> {{request.user.customer.city}}</h6>
+
+
+              </p>
+              <div class="buttons">
+                <a href="{% url 'customer:change_password'%}" class="btn btn-primary btn-change-pass justify-content-center"> <i
+                    class="fas fa-key"></i>
+                  Change
+                  Password</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!--Column-->
+        <div class="col-md-1 col-lg-8 right-card border-2 p-3 mt-md-0 mb-3 " >
+    <h4 class="text-center" style="color: #093B60;"> <i class="fas fa-user-edit"></i> Edit Your Profile</h4>
+
+          <div class="mb-3">
+            <label for="customer-name" class="form-label" >Name</label>
+            <input type="text" value="{{request.user.customer.name}}" placeholder="Enter your name" class=" form-control" name="name"
+              id="customer-name">
+          </div>
+          <div class="mb-3">
+            <label for="customer-phone" class="form-label">Phone</label>
+            <input type="text" value="{{request.user.customer.phone}}" placeholder="Enter Phone number"  name=" phone" class="form-control"
+              id="customer-phone">
+          </div>
+          <div class="mb-3">
+            <label for="customer-province" class="form-label">Province</label>
+            <select class="form-select" id="customer-province" name="province">
+              <option value="Province 1"
+                {% if request.user.customer.province == 'Province 1' %}selected{% endif %}>
+                Province 1</option>
+              <option value="Province 2"
+                {% if request.user.customer.province == 'Province 2' %}selected{% endif %}>
+                Province 2</option>
+              <option value="Bagmati" {% if request.user.customer.province == 'Bagmati' %}selected{% endif %}>
+                Bagmati</option>
+              <option value="Gandaki" {% if request.user.customer.province == 'Gandaki' %}selected{% endif %}>
+                Gandaki</option>
+              <option value="Karnali" {% if request.user.customer.province == 'Karnali' %}selected{% endif %}>
+                Karnali</option>
+              <option value="Sudhurpachhim"
+                {% if request.user.customer.province == 'Sudhurpachhim' %}selected{% endif %}>Sudhurpachhim
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="customer-city" class="form-label" >City</label>
+            <input type="text" value="{{request.user.customer.city}}"  placeholder="Where do you live currently?"  name=" city" class="form-control"
+              id="customer-city">
+          </div>
+          <div class="mb-3">
+            <label for="customer-street-address" class="form-label"   >Street Address</label>
+            <input type="text" value="{{request.user.customer.street_address}}" placeholder="Enter your address" name=" street_address"
+              class="form-control" id="customer-street-address">
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-update">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
