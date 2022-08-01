@@ -369,7 +369,7 @@ section {
   font-family: "Raleway", sans-serif;
   font-weight: 600;
   font-size: 14px;
-  color: #1e6ca6;
+  color: #124265;
 }
 
 /*--------------------------------------------------------------
@@ -678,7 +678,7 @@ section {
 }
 
 .services .iconbox-blue i {
-  color: #0860a1;
+  color: #093b60;
 }
 
 .services .iconbox-blue:hover .icon i {
@@ -686,7 +686,7 @@ section {
 }
 
 .services .iconbox-blue:hover .icon path {
-  fill: #0860a1;
+  fill: #093b60;
 }
 
 .services .iconbox-orange i {
