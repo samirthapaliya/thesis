@@ -1,0 +1,397 @@
+{% extends 'base/layout.html' %}
+{% load static %}
+
+{% block additional_head %}
+<link rel="stylesheet" href="{% static 'business/css/business-profile.css' %}">
+<link rel="stylesheet" href="{% static 'business/css/business-gallery.css' %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="">
+    <div class="content-page">
+        {% if object.cover_picture %}
+        <div class="profile-banner"
+            style="background:url('/media/{{ object.cover_picture }}')fixed no-repeat;background-size: cover ;">
+            {% else %}
+            <div class="profile-banner"
+                style="background:url('/static/business/images/profile/empty_placeholder.jpg')fixed no-repeat;background-size: cover ">
+                {% endif %}
+                <div class="col-md-3 avatar-container">
+                    {% if object.logo %}
+                    <img src="{{object.logo.url}}" class="rounded-circle profile-avatar" alt="User avatar">
+                    {% else %}
+                    <img src="{% static 'business/images/profile/building_company.png' %}"
+                        class="rounded-circle profile-avatar" alt="User avatar">
+                    {% endif %}
+                </div>
+                <div class="col-sm-12 profile-actions text-end pe-2">
+                    {% if user.is_authenticated %}
+                    <a class="btn mb-1 btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#report-business"
+                        type="button">
+                        <i class="fas fa-flag"></i>&nbsp;Report
+                        Business
+                    </a>
+                    {% else %}
+                    <a class="btn mb-1 btn-danger btn-sm"
+                        href="{% url 'login' %}?next={% url 'business:business-profile' object.slug %}" type="button"><i
+                            class="fas fa-flag"></i>&nbsp;Report
+                        Business</a>
+                    {% endif %}
+                    {% include 'business/snippets/report-business-modal.html' with obj=object service=ser %}
+                </div>
+            </div>
+            <div class="content">
+
+                <div class="row me-0 px-1">
+                    <div class="col-md-3">
+                        <!-- Begin user profile -->
+                        <div class="text-center user-profile-2" style="margin-top:120px">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <h5>{{object.name}} {% if object.is_verified %}<span class="material-icons verified"
+                                            style="color:blue"> verified </span>{% endif %}</h5>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <div class="overall-rating-display">
+                                        <div class="stars-outer">
+                                            <div class="stars-inner"></div>
+                                        </div>
+                                        <span
+                                            class="rating-decimal badge rounded-pill bg-info text-dark">{{object.get_avg_rating}}</span>
+
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    Total Reviews
+                                    <span class="badge rounded-pill bg-secondary">{{object.total_reviews}}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    Hiring Completed
+                                    <span class="badge rounded-pill bg-secondary">{{hiring_completed}}</span>
+                                </li>
+                            </ul>
+
+                            <!-- User button -->
+                            <div class="user-button">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        {% if request.user.is_authenticated %}
+
+                                        <a role="button" class="customer-bookmark-toggle btn btn-info"
+                                            href="{% url 'customer:customer-bookmark-toggle' object.slug %}"
+                                            title="Bookmark">Bookmark
+                                            {% if is_bookmarked %}<i
+                                                class="fa fa-bookmark fa-1x bookmark-icon"></i>{% else %}
+                                            <i class="far fa-bookmark fa-1x bookmark-icon"></i> {% endif %}</a>
+                                        {% endif %}
+                                    </div>
+
+                                </div>
+                            </div><!-- End div .user-button -->
+                        </div><!-- End div .box-info -->
+                        <!-- Begin user profile -->
+                    </div><!-- End div .col-sm-4 -->
+
+                    <div class="col-md-9">
+                        <div class="widget widget-tabbed">
+                            <!-- Nav tab -->
+                            <ul class="nav nav-tabs nav-justified">
+                                <li class="nav-item"><a class="nav-link active" href="#business-services-tab"
+                                        data-bs-toggle="tab"><i class="fas fa-people-carry"></i></i>
+                                        Services</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#business-about-tab"
+                                        data-bs-toggle="tab"><i class="fa fa-user"></i> About</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#business-gallery"
+                                        data-bs-toggle="tab"><i class="fa fa-laptop"></i>
+                                        Gallery</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#business-reviews-tab"
+                                        data-bs-toggle="tab"><i class="fa fa-envelope"></i> Reviews</a>
+                                </li>
+                            </ul>
+                            <!-- End nav tab -->
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+
+
+                                <!-- Tab Services -->
+                                <div class="tab-pane animated active fadeInRight" id="business-services-tab">
+                                    <div class="container services" data-aos="fade-up">
+                                        <div class="row">
+                                            {% for ser in object.business_service_set.all %}
+
+                                            <div class="col-lg-4 col-md-6 col-sm-6 p-3" data-aos="zoom-in"
+                                                data-aos-delay="100">
+                                                <div class="icon-box iconbox-blue" style=" border-radius: 20px;">
+                                                    <div class="icon">
+                                                        <svg width="100" height="100" viewBox="0 0 600 600"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path stroke="none" stroke-width="0" fill="#f5f5f5"
+                                                                d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174">
+                                                            </path>
+                                                        </svg>
+                                                        <i class="fas {{ser.service.icon_text}}"></i>
+                                                    </div>
+                                                    <h4>{{ser.service.name}}</h4>
+                                                    <p>{{ser.description|truncatechars:20}}</p>
+                                                    {% if user.is_authenticated %}
+                                                    <a class="btn btn-primary btn-sm mt-2" data-bs-toggle="modal"
+                                                        data-bs-target="#request-business{{ser.id}}" type="button">
+                                                        <i class="fas fa-hands-helping"></i>&nbsp;Hire Request
+                                                    </a>
+                                                    {% else %}
+                                                    <a class="btn btn-primary btn-sm mt-2"
+                                                        href="{% url 'login' %}?next={% url 'business:business-profile' object.slug %}"
+                                                        type="button"><i
+                                                            class="fas fa-hands-helping"></i>&nbsp;Request</a>
+                                                    {% endif %}
+
+                                                </div>
+
+                                            </div>
+                                            {% include 'business/snippets/business-profile-page-hiring-modal.html' with obj=object service=ser %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div><!-- End div .tab-pane -->
+                                <!-- End Tab Services -->
+
+                                <!-- Tab about -->
+                                <div class="tab-pane animated fadeInRight" id="business-about-tab">
+                                    <div class="user-profile-content">
+                                        <h5><strong>ABOUT</strong> US</h5>
+                                        <p>
+                                            {{object.description}}
+                                        </p>
+                                        <p>
+                                            <strong>Moto</strong>: {{object.business_profile.moto}}
+                                        </p>
+                                        <hr>
+                                        <div class="row">
+
+                                            <div class="col-sm-6">
+                                                <h5><strong>More</strong> Info</h5>
+                                                <p><b>Established:</b> {{object.business_profile.established}}</p>
+                                                <p><b>Founder:</b> {{object.business_profile.founder}}</p>
+                                                <p><b>Language:</b> {{object.business_profile.language}}</p>
+                                                <p><b>Address:</b> {{object.street_address}}, {{object.district}}, {{object.province}} </p>
+                                                <p><b>Street Adress:</b> {{object.street_address}}</p>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <h5><strong>CONTACT</strong> ME</h5>
+                                                <address>
+                                                    <strong>Phone</strong><br>
+                                                    <abbr title="Phone">{% if request.user.is_authenticated %}{% if customer_has_hired %}{{object.phone}}{% else %}Hire this business to see{% endif %}{% else %}<a href="{% url 'customer-registration' %}">Login To See</a>{% endif %}</abbr>
+                                                </address> 
+                                                <address>
+                                                    <strong>Email</strong><br>
+                                                    <a
+                                                        href="mailto:{{object.contact_email}}">{{object.contact_email}}</a>
+                                                </address>
+                                                <address>
+                                                    <strong>Website</strong><br>
+                                                    <a href=""></a>
+                                                </address>
+                                            </div>
+                                        </div><!-- End div .row -->
+                                        <hr>
+                                    </div><!-- End div .user-profile-content -->
+                                </div><!-- End div .tab-pane -->
+                                <!-- End Tab about -->
+
+
+                                <!-- Tab user activities -->
+                                <div class="tab-pane animated fadeInRight" id="business-gallery">
+                                    <div class="scroll-user-widget">
+                                        <!-- ======= Portfolio Section ======= -->
+                                        <section id="portfolio" class="portfolio">
+                                            <div class="container" data-aos="fade-up">
+                                                <div class="section-title">
+
+                                                </div>
+                                                <div class="row portfolio-container">
+                                                {% for bimage in business_gallery %}
+                                                    <div class="col-lg-4 col-md-6 portfolio-item">
+                                                        <div class="portfolio-wrap">
+                                                            <img src="{{bimage.picture.url}}"
+                                                                class="img-fluid" alt="" />
+                                                            <div class="portfolio-info">
+                                                                <h4>{{bimage.title}}</h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <!-- End Portfolio Section -->
+                                    </div><!-- End div .scroll-user-widget -->
+                                </div><!-- End div .tab-pane -->
+                                <!-- End Tab user activities -->
+
+                                <!-- Tab user messages -->
+                                <div class="tab-pane animated fadeInRight" id="business-reviews-tab">
+                                    <div class="scroll-user-widget">
+                                        {% if request.user.is_authenticated and request.user.is_customer %}
+                                        <div class="review_form mb-5">
+                                            <form method="POST">
+                                                {% csrf_token %}
+                                                <div class="star_rating">
+                                                    <label class="form-label fw-bold">Rating: </label>
+                                                    <span class="fas fa-star star_rate" onclick="rate(0)"></span>
+                                                    <span class="fas fa-star star_rate" onclick="rate(1)"></span>
+                                                    <span class="fas fa-star star_rate" onclick="rate(2)"></span>
+                                                    <span class="fas fa-star star_rate" onclick="rate(3)"></span>
+                                                    <span class="fas fa-star star_rate" onclick="rate(4)"></span>
+                                                </div>
+                                                {{form.rating}}
+                                                <div class="comment_div">
+                                                    <label class="form-label fw-bold">Comment:</label>
+                                                    {{form.comment}}
+                                                </div>
+                                                <div>
+                                                    {% if customer_review_exist == False %}
+                                                    <button type="submit" class="review_button">Add Review</button>
+                                                    {% else %}
+                                                    <button type="submit" class="review_button me-3">Edit</button>
+                                                    <button type="button" class="form_closer"
+                                                        onclick="hide_form()">Close</button>
+                                                    {% endif %}
+                                                </div>
+                                            </form>
+                                            <div class="dropdown-divider mt-3"></div>
+                                        </div>
+                                        {% endif %}
+
+                                        <div class="reviews table-responsive">
+                                            {% for i in review %}
+                                            {% if i.customer == request.user.customer %}
+                                            <div class="customer_reviews">
+                                                <div class="customer_image">
+                                                    <div>
+                                                        {% if i.customer.image.url != "/media/static/Image/default.jpg" %}
+                                                        <img class="img-fluid rounded-circle"
+                                                            src="{{i.customer.image.url}}" alt="" />
+                                                        {% else %}
+                                                        <img class="img-fluid rounded-circle"
+                                                            src="/{{i.customer.image}}" alt="" />
+                                                        {% endif %}
+                                                    </div>
+                                                    <div>
+                                                        <p class="fw-bold">{{i.customer.name}}</p>
+                                                        <p>
+                                                            {% if i.rating >= 1 %}
+                                                            <span class="fas fa-star rated"></span>
+                                                            {% else %}
+                                                            <span class="far fa-star not_rated"></span>
+                                                            {% endif %}
+
+                                                            {% if i.rating >= 2 %}
+                                                            <span class="fas fa-star rated"></span>
+                                                            {% else %}
+                                                            <span class="far fa-star not_rated"></span>
+                                                            {% endif %}
+
+                                                            {% if i.rating >= 3 %}
+                                                            <span class="fas fa-star rated"></span>
+                                                            {% else %}
+                                                            <span class="far fa-star not_rated"></span>
+                                                            {% endif %}
+
+                                                            {% if i.rating >= 4 %}
+                                                            <span class="fas fa-star rated"></span>
+                                                            {% else %}
+                                                            <span class="far fa-star not_rated"></span>
+                                                            {% endif %}
+
+                                                            {% if i.rating >= 5 %}
+                                                            <span class="fas fa-star rated"></span>
+                                                            {% else %}
+                                                            <span class="far fa-star not_rated"></span>
+                                                            {% endif %}
+
+                                                            {{i.created_at}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <p class="customer_comment">{{i.comment}}</p>
+                                                <button type="button" class="comment_editor"
+                                                    onclick="show_form()">Modify</button>
+                                            </div>
+                                            <div class="dropdown-divider"></div>
+                                            {% endif %}
+                                            {% endfor %}
+                                            {% for i in review %}
+                                            {% if i.customer != request.user.customer %}
+                                            <div class="customer_reviews">
+                                                <div class="customer_image">
+                                                    <div>
+                                                        {% if i.customer.image.url != "/media/static/Image/default.jpg" %}
+                                                        <img class="img-fluid rounded-circle"
+                                                            src="{{i.customer.image.url}}" alt="" />
+                                                        {% else %}
+                                                        <img class="img-fluid rounded-circle"
+                                                            src="/{{i.customer.image}}" alt="" />
+                                                        {% endif %}
+                                                    </div>
+                                                    <div>
+                                                        <p class="fw-bold">{{i.customer.name}}</p>
+                                                        <p>
+                                                            {% if i.rating >= 1 %}
+                                                            <span class="fas fa-star rated"></span>
+                                                            {% else %}
+                                                            <span class="far fa-star not_rated"></span>
+                                                            {% endif %}
+
+                                                            {% if i.rating >= 2 %}
+                                                            <span class="fas fa-star rated"></span>
+                                                            {% else %}
+                                                            <span class="far fa-star not_rated"></span>
+                                                            {% endif %}
+
+                                                            {% if i.rating >= 3 %}
+                                                            <span class="fas fa-star rated"></span>
+                                                            {% else %}
+                                                            <span class="far fa-star not_rated"></span>
+                                                            {% endif %}
+
+                                                            {% if i.rating >= 4 %}
+                                                            <span class="fas fa-star rated"></span>
+                                                            {% else %}
+                                                            <span class="far fa-star not_rated"></span>
+                                                            {% endif %}
+
+                                                            {% if i.rating >= 5 %}
+                                                            <span class="fas fa-star rated"></span>
+                                                            {% else %}
+                                                            <span class="far fa-star not_rated"></span>
+                                                            {% endif %}
+
+                                                            {{i.created_at}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <p class="customer_comment">{{i.comment}}</p>
+                                            </div>
+                                            <div class="dropdown-divider"></div>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div><!-- End div .scroll-user-widget -->
+                                </div><!-- End div .tab-pane -->
+                                <!-- End Tab user messages -->
+                            </div><!-- End div .tab-content -->
+                        </div><!-- End div .box-info -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endblock %}
+
+        {% block additional_body %}
+        <script src="{% static 'js/business-profile.js' %}"></script>
+        <script src="{% static 'customer/js/customer-bookmark-toggle.js' %}"></script>
+        <script src="{% static 'business/js/decimal-to-star-display.js' %}"></script>
+        {% endblock %}

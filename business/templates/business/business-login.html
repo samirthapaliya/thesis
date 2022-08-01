@@ -1,0 +1,58 @@
+{% extends 'base/layout.html' %}
+{% load static %}
+{% load class_tag_filter %}
+{% block title %}
+
+{% encblock %}
+{% block additional_head %}
+<link rel="stylesheet" href="{% static 'customer/css/customer-login.css' %}">
+{% endblock %}
+{% block main_content %}
+<div class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+  <div class="container">
+    <div class="card login-card">
+      <div class="row no-0">
+        <div class="col-md-6 d-none d-lg-block text-center">
+          <img src="{% static 'img/svg/people-search-svg.svg' %}" class="mt-5" height="500" width="500" alt="">
+        </div>
+        <div class="col-lg-6 col-md-8">
+          <div class="card-body">
+            <div class="brand-wrapper">
+              <img
+                src="https://imgr.search.brave.com/movByOJFG-Md0eCficaFtW-hLHIbaAlPplMeAEzRQqw/fit/474/225/no/1/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC51/TDBwT0NDNXhnZ0JI/eHFDamlTSXFnSGFI/YSZwaWQ9QXBp"
+                alt="logo" class="logo">
+            </div>
+            <p class="login-card-description">Sign into your account</p>
+            <form method="POST">
+              {% csrf_token %}
+              <div>
+                <label for="id_username" class="sr-only">Email</label>
+                {{form.username|addclass:'form-control'|addplaceholder:'Username or Email'}}
+
+              </div>
+              <div>
+                <label for="id_password" class="sr-only">Password</label>
+                {{form.password|addclass:'form-control'|addplaceholder:'Password'}}
+              </div>
+
+              {% for error in form.non_field_errors %}
+              <div class="alert alert-danger">
+                {{ error|escape }}
+              </div>
+              {% endfor %}
+              <button name="login" id="login" class="btn btn-block login-btn mb-4" value="Login">Login</button>
+            </form>
+            <a href="#!" class="forgot-password-link">Forgot password?</a>
+            <p class="login-card-footer-text">Don't have an account? <a href="{% url 'business-registration' %}"
+                class="text-reset">Register here</a></p>
+            <nav class="login-card-footer-nav">
+              <a href="#!">Terms of use.</a>
+              <a href="#!">Privacy policy</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

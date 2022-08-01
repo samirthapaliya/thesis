@@ -1,0 +1,80 @@
+{% extends 'base/layout.html' %}
+{% load static %}
+{% load class_tag_filter %}
+{% block additional_head %}
+<link rel="stylesheet" href="{% static 'business/css/business-list-page.css' %}">
+{% endblock %}
+{% block main_content %}
+    {% include 'business/snippets/business-advanced-search.html' %}
+<div class="container pt-5 pb-5">
+    <div class="d-flex justify-content-center row">
+        {% if object_list %}
+        {% for object in object_list  %}
+        <div class="col-lg-10 col-md-12 m-1 mb-3">
+            {% comment %} To make code easy to read {% endcomment %}
+            {% include 'business/snippets/business-card.html' with obj=object customer_bookmarks=customer_bookmarks_business%}
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="container text-center mt-3">
+            <div class="row">
+                <div class="col-md-12">
+                <img src="{% static 'img/websites/no_search_result_found.png' %}" width="200" height="200">
+                    <div class="error-template">
+                        <h5>No Business Found</h5>
+                        <div class="error-details">
+                            Sorry, no business found!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if is_paginated %}
+        <nav aria-label="Business Pagination" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?q={{ request.GET.q }}&page=1" aria-label="First">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?q={{ request.GET.q }}&page={{page_obj.previous_page_number}}"
+                        tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="?q={{ request.GET.q }}&page={{num}}">{{num}}</a>
+                </li>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <li class="page-item"><a class="page-link" href="?q={{ request.GET.q }}&page={{num}}">{{num}}</a></li>
+
+                {% endif %}
+
+                {% endfor %}
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?q={{ request.GET.q }}&page={{page_obj.next_page_number}}">Next</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?q={{ request.GET.q }}&page={{page_obj.paginator.num_pages}}"
+                        aria-label="Last">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block additional_body %}
+<script src="{% static 'business/js/decimal-to-star-display.js' %}"></script>
+<script src="{% static 'customer/js/customer-bookmark-toggle.js' %}"></script>
+<script src="{% static 'JS/customer_navbar.js' %}"></script>
+{% endblock %}

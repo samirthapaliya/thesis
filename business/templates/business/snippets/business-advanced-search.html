@@ -1,0 +1,17 @@
+<div class="search-form">
+  <p class="search-place fs-3 text-center">Hire the best business to get your work done</p>
+  <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4 search-bar-group">
+
+   <form method="GET" action="{% url 'business:business-list-page' %}">
+            
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <button id="button-addon2" type="submit" class="btn btn-link text-warning"><i
+                                class="fa fa-search"></i></button>
+                    </div>
+                    <input type="search" name="q" value="{{query}}" placeholder="What're you searching for?"
+                        aria-describedby="button-addon2" class="form-control border-0 bg-light">
+                </div>
+        </form>
+  </div>
+</div>

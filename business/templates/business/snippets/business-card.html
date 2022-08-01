@@ -1,0 +1,78 @@
+{% load static %}
+<style>
+.card-business{
+  background-color: aqua;
+}
+</style>
+<div class="col-lg-12 col-md-12 position-relative business-card">
+  <div class="bookmark-icon position-absolute top-10 end-0">
+    {% if request.user.is_authenticated %}
+
+    <a role="button" class="customer-bookmark-toggle" href="{% url 'customer:customer-bookmark-toggle' obj.slug %}"
+      title="Bookmar">
+      {% if obj in customer_bookmarks_business %}<i class="fa fa-bookmark fa-2x bookmark-icon"></i>{% else %}
+      <i class="far fa-bookmark fa-2x bookmark-icon"></i> {% endif %}</a>
+    {% endif %}
+  </div>
+  <div class="row p-2 bg-white border rounded card-business">
+
+    <div class="col-md-4 mt-1">
+      <!-- cover image -->
+      {% if obj.cover_picture %}
+      <img class="rounded product-image" src="{{ obj.cover_picture.url }}" />
+      {% else %}
+      <img class="rounded product-image" src="{% static 'business/images/profile/empty_placeholder.jpg' %}" />
+      {% endif %}
+    </div>
+
+    <div class="col-md-5 mt-1">
+      <div class="profile-image inline-block">
+        {% if obj.logo %}
+        <img class="inline-block" src="{{ obj.logo.url }}" />
+        {% else %}
+        <img class="inline-block" src="{% static 'business/images/profile/building_company.png' %}" />
+        {% endif %}
+      </div>
+      <h5 class="inline-block">
+        {{obj.name}} {% if obj.is_verified %}<span class="material-icons verified btn-sm"> verified </span>{% endif %}
+      </h5>
+      <div class="overall-rating-display">
+        <div class="stars-outer">
+          <div class="stars-inner"></div>
+        </div>
+        <span class="rating-decimal badge rounded-pill bg-light text-dark">{{obj.get_avg_rating}}</span>
+        <span> of {{obj.total_reviews}} Reviews</span>
+      </div>
+      <div class="mt-1 mb-1 spec-1">
+        {% for ser in obj.business_service_set.all %}
+        <span class="badge rounded-pill bg-info">{{ser.service.name}}</span>
+        {% endfor %}
+
+      </div>
+      <p class="text-justify text-truncate para mb-0">
+        {{obj.description}}<br /><br />
+      </p>
+    </div>
+    <div class="align-items-center align-content-center col-md-3 border-start mt-1">
+      <div class="d-flex flex-row align-items-center pe-3">
+        <i class="fas fa-street-view"></i>&nbsp;{{obj.district}}, {{obj.province}}
+      </div>
+      <h6 class="text-success"></h6>
+      <div class="d-flex flex-column mt-4">
+        <a href="{% url 'business:business-profile' obj.slug  %}" class="btn btn-secondary btn-sm" type="button"><i
+            class="fas fa-info-circle"></i>&nbsp;Details</a>
+        {% if user.is_authenticated %}
+
+        <a class="btn btn-primary btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#request-business{{obj.slug}}"
+          type="button">
+          <i class="fas fa-hands-helping"></i>&nbsp;Hire Request
+        </a>
+        {% else %}
+        <a class="btn btn-primary btn-sm mt-2" href="{% url 'login' %}?next={% url 'business:business-profile' obj.slug %}"
+          type="button"><i class="fas fa-hands-helping"></i>&nbsp;Request</a>
+        {% endif %}
+        {% include 'business/snippets/business-hiring-modal.html' with obj=obj %}
+      </div>
+    </div>
+  </div>
+</div>

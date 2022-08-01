@@ -1,0 +1,31 @@
+<div class="modal fade" id="request-business{{service.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{obj.name}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'hiring:hire-business-service' %}" method="POST" >
+                {% csrf_token %}
+                    <input name="business-id" type="hidden" value="{{obj.id}}">
+                    <div class="mb-3 text-start">
+                        <label for="service-select-form" class="col-form-label">Service:</label>
+                        <select class="form-select" id="service-select-form" name="service-select-form" aria-label="Services Select" required>
+                            <option value="{{service.service.name}}">{{service.service.name}}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 text-start">
+                        <label for="message-text" class="col-form-label">Message:</label>
+                        <textarea class="form-control" name="message-text" id="message-text"></textarea>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="far fa-times-circle"></i>&nbsp;Cancel</button>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-hands-helping"></i>&nbsp;Request</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
