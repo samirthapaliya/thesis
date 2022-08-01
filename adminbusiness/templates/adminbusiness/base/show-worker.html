@@ -1,0 +1,92 @@
+{% extends 'adminbusiness/main/business-layout.html' %}
+{% load static %}
+{% block title %}
+    View Worker
+{% endblock %}
+{% block additional_head %}
+<link href="{% static 'css/business-dashboard.css' %}" rel="stylesheet">
+<style>
+    .container{
+        margin-top: 6rem;
+    }
+
+    .text-center{
+        color: #093B60
+    }
+
+    .btn-primary{
+        background-color: #093B60;
+    }
+
+    .btn-primary:hover{
+        background-color: #062c49;
+    }
+    .btn-light{
+        background-color: #e1e1e1;
+    }
+
+    button{
+        height: 2rem;
+    }
+
+    .add-btn{
+        height: 2rem;
+    }
+
+</style>
+{% endblock %}
+
+{% block main_content %} 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 offset">
+            <h1 class="text-center"> Worker </h1>
+            <div class="card py-2 px-2 table-responsive">
+                <div class="card card-body"  style="display: inline;">
+                    <form class="form-label" method="get">
+                        {{worker_filter.form.name}}
+                        <button class="btn btn-primary btn-sm" type="sumbit">Search</button>
+                    </form>
+                </div>
+                <a class="btn btn-primary btn-bg ml-auto mb-2" style="width: 100%"
+                   href="{% url 'adminbusiness:post-worker-dash' %}">Add New Worker</a>
+                   
+                <table class="table table-responsive table-white" >
+                    <tr class="btn-light">
+                        <th>#</th>
+                        <th>Worker Name</th>
+                        <th>Picture</th>
+                        <th>Status</th>
+                        <th>Phone</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for w in businessWorker %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ w.name }}</td>
+                        <td>{{ w.picture }}</td>
+                        <td>{{ w.is_active }}</td>
+                        <td>{{ w.phone }}</td>
+
+                       <td><a href="{% url 'adminbusiness:update-worker-dash' w.id %}"
+                               class="btn btn-primary btn-sm">Edit</a>&nbsp;
+                    
+                            <a href="{% url 'adminbusiness:delete-worker-dash' w.id %}"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Are you sure want to delete this file?')">
+                                Delete</a></td> 
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block additional_body %}
+
+{% endblock %}
+
+

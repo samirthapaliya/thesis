@@ -1,0 +1,59 @@
+{% extends 'adminbusiness/main/business-layout.html' %}
+{% load static %}
+
+{% block title %}
+Notifications
+{% endblock %}
+
+{% block main_content %}
+
+<div class="container" style="margin-top: 6rem;">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box shadow-sm rounded bg-white mb-3">
+                <div class="box-title border-bottom p-3">
+                    <h6 class="m-0">Today</h6>
+                </div>
+                <div class="box-body p-0">
+                    {% for object in today_notifications %}
+                    <div class="p-3 d-flex align-items-center bg-light border-bottom">
+                        <div class="dropdown-list-image mr-3">
+                            {% comment %} <img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar3.png"
+                                alt="" /> {% endcomment %}
+                        </div>
+                        <div class="font-weight-bold me-3">
+                            <div class="fw-bold">{{object.title}}</div>
+                            <div class="small fw-normal text-break">{{object.message}}</div>
+                            <div class="text-muted pt-1 fst-italic" style="font-size:11px">{{object.datetime|timesince}} ago</div>
+                        </div>
+                            
+                        
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="box shadow-sm rounded bg-white mb-3">
+                <div class="box-title border-bottom p-3">
+                    <h6 class="m-0">Earlier</h6>
+                </div>
+                <div class="box-body p-0">
+                    {% for object in object_list %}
+                    <div class="p-3 d-flex align-items-center bg-light border-bottom">
+                        <div class="dropdown-list-image mr-3">
+                        </div>
+                        <div class="font-weight-bold me-3">
+                            <div class="fw-bold">{{object.title}}</div>
+                            <div class="small fw-normal text-break">{{object.message}}</div>
+                            <div class="text-muted pt-1 fst-italic" style="font-size:11px">{{object.datetime|timesince}} ago</div>
+                        </div>
+                            
+                        
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main_content %}

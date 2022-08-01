@@ -1,0 +1,41 @@
+<div
+  class="modal fade"
+  id="accept-worker-business{{hire.id}}"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form action="{% url 'adminbusiness:approve-business-hiring' hire.id %}" method="POST">
+        {% csrf_token %}
+      <div class="modal-body">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Select Worker:</label>
+            <select class="browser-default custom-select" name="select-worker" required>
+                {% for worker in workers %}
+                <option value="{{worker.id}}">{{worker.name}}</option>
+                {% endfor %}
+              </select>
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text" name="message" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" style="background-color: #062741">Accept</button>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>

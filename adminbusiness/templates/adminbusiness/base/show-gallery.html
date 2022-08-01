@@ -1,0 +1,80 @@
+{% extends 'adminbusiness/main/business-layout.html' %}
+{% load static %}
+{% block title %}
+View Service
+{% endblock %}
+{% block additional_head %}
+<link href="{% static 'css/business-dashboard.css' %}" rel="stylesheet">
+<style>
+    .container {
+        margin-top: 6rem;
+    }
+    .text-center{
+        color: #093B60
+    }
+    .btn-primary{
+        background-color: #093B60;
+    }
+
+    .btn-primary:hover{
+        background-color: #062c49;
+    }
+    .btn-light{
+        background-color: #e1e1e1;
+    }
+</style>
+{% endblock %}
+
+{% block main_content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 offset">
+            <h1 class="text-center"> Gallery </h1>
+            {% comment %} Show Messages {% endcomment %}
+            {% for message in messages %}
+            <div class="alert {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}alert-warning{% else %}alert-secondary{% endif %} alert-dismissible fade show"
+                role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            {% endfor %}
+
+            <div class="card py-2 px-2 table-responsive">
+                <a class="btn btn-primary btn-bg ml-auto mb-2" style="width: 100%"
+                    href="{% url 'adminbusiness:post-gallery-dash' %}">Add New Gallery</a>
+
+                <table class="table table-responsive table-white">
+                    <tr class="btn-light">
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Image</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for g in businessGallery %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ g.title }}</td>
+                        <td><img src="{{ g.picture.url }}" alt="" width="50" height="50"></td>
+                        <td>{{ g.description }}</td>
+
+                        <td><a href="update-gallery/{{ g.id }}" class="btn btn-primary btn-sm">Edit</a>&nbsp;
+
+                            <a href="delete-gallery/{{ g.id }}" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Are you sure want to delete this file?')">
+                                Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block additional_body %}
+
+{% endblock %}

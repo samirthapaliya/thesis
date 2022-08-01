@@ -1,0 +1,31 @@
+{% load bootstrap %}
+<!-- Notification dropdown -->
+<li class="nav-item dropdown me-3 mt-2">
+
+    <a
+       class="nav-link me-3  me-lg-0 dropdown-toggle hidden-arrow"
+       href="#"
+       id="navbarDropdownMenuLink"
+       role="button"
+       data-mdb-toggle="dropdown"
+       aria-expanded="false"
+       >
+      <i class="fas fa-bell"></i>
+      <span class="badge rounded-pill badge-notification bg-danger"
+            >{{notifications.count}}</span
+        >
+    </a>
+    <ul
+        class="dropdown-menu dropdown-menu-end "
+        aria-labelledby="navbarDropdownMenuLink"
+        
+        >
+    {% for noti in limit_notifications %}
+    
+      <li><a class="dropdown-item" href="{% url 'adminbusiness:business-hire-notification-api' noti.id %}">{{noti.message}}</a></li>
+    {% endfor %}
+    <span style=" margin-left:1.5rem; ">No new notification</span>
+    <a class="text-center" style="margin-top: 12rem;" href="{% url 'adminbusiness:business-all-notification-page' %}"><p>View All</p></a>
+    </ul>
+    
+  </li>

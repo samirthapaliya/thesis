@@ -1,0 +1,119 @@
+{% extends 'adminbusiness/main/business-layout.html' %}
+{% load static %}
+{% block title %}
+    Business Dashboard
+{% endblock %}
+{% block additional_head %}
+
+<style>
+   .container{
+       margin-top: 6rem;
+   }
+   .card{
+    background-color: #093B60;
+   }
+    
+
+</style>
+{% endblock %}
+
+{% block main_content %} 
+
+<!-- total service -->
+<div class="container">
+<div class="row">
+    <!-- total service -->
+      <div class="col-xl-3 col-sm-6 col-12 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between px-md-1">
+              <div>
+                <h3 class="text-light">{{business_service_count}}</h3>
+                <p class="mb-0 text-light">Total Services</p>
+              </div>
+              <div class="align-self-center"> 
+                <a href="{% url 'adminbusiness:post-service-dash' %}"><i class="fa fa-wrench  text-light fa-3x"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    <!-- total customer -->
+    <div class="col-xl-3 col-sm-6 col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between px-md-1">
+            <div>
+              <h3 class="text-light">{{customer_count}}</h3>
+              <p class="mb-0 text-light">Total customer</p>
+            </div>
+            <div class="align-self-center">
+              <i class="fa fa-users text-light fa-3x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- hire request -->
+    <div class="col-xl-3 col-sm-6 col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between px-md-1">
+            <div>
+              <h3 class="text-light">{{hiring_count}}</h3>
+              <p class="mb-0 text-light">Hire Request</p>
+            </div>
+            <div class="align-self-center">
+              <i class="fas fa-user-friends text-light fa-3x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- total worker -->
+    <div class="col-xl-3 col-sm-6 col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between px-md-1">
+            <div>
+              <h3 class="text-light">{{worker_count}}</h3>
+              <p class="mb-0 text-light">Total Worker</p>
+            </div>
+            <div class="align-self-center">
+              <i class="fas fa-hard-hat text-light fa-3x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- for review -->
+    <div class="col-xl-3 col-sm-6 col-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between px-md-1">
+            <div>
+              <h3 class="text-light">{{review_count}}</h3>
+              <p class="mb-0 text-light">Total Review</p>
+            </div>
+            <div class="align-self-center">
+              <i class="fas fa-pencil-alt text-light fa-3x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block additional_body %}
+
+{% endblock %}
+
+

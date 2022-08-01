@@ -1,0 +1,78 @@
+{% extends 'adminbusiness/main/business-layout.html' %}
+{% load bootstrap %}
+{% load static %}
+{% block title %}
+Edit Business Profile
+{% endblock %}
+{% block additional_head %}
+
+<style>
+    .mycontainer {
+        margin-top: 6rem;
+
+    }
+
+    .card {
+        border: 0;
+        border-radius: 27.5px;
+        box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
+        overflow: hidden;
+    }
+
+    .form {
+        margin-left: 0.5rem;
+        border-radius: 5px;
+        
+        padding: 25px;
+    }
+    
+
+    input[type=submit] {
+        background-color:#093B60;
+        color: white;
+        padding: 10px 20px;
+        margin: 4px 0;
+        border: none;
+        border-radius: 4px;
+        
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: #062741;
+       
+    }
+</style>
+{% endblock %}
+
+{% block main_content %}
+<div class="mycontainer">
+    <div class="row">
+        <div class="col-md-8 col-12 mx-auto">
+            <h1 class="text-center">Edit Business Profile</h1>
+            {% comment %} Show Messages {% endcomment %}
+            {% for message in messages %}
+            <div class="alert {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}alert-warning{% else %}alert-secondary{% endif %} alert-dismissible fade show"
+                role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            {% endfor %}
+            <div class="card mx-auto py-2">
+                <form class="form" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form | bootstrap_horizontal}}
+                    <input type="submit" class="btn" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block additional_body %}
+
+{% endblock %}

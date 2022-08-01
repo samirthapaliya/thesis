@@ -1,0 +1,191 @@
+{% extends 'base/layout.html' %}
+{% load static %}
+
+{% block additional_head %}
+<link rel="stylesheet" href="{% static 'business/css/business-profile.css' %}">
+{% endblock %}
+
+{% block main_content %}
+
+
+<header>
+    <div class="user">
+        {% if object.log %}
+        <img src="{{object.logo.url}}" alt="">
+        {% endif %}
+        <h3 class="name">{{object.name}}</h3>
+        <p class="post">Rating:<em class="str">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+        </em>
+        </p>
+    </div>
+
+    <nav class="navbar1">
+        <ul>
+            <li><a href="#home">Intro</a></li>
+            <li><a href="#about">about</a></li>
+            <li><a href="#service">service</a></li>
+            <li><a href="#employee">employee</a></li>
+            <li><a href="#contact">contact</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<!-- header section ends -->
+
+<div id="menu" class="fas fa-bars"></div>
+
+<!-- home section starts  -->
+
+
+<section class="home" id="home">
+    <h3>HI THERE !</h3>
+    <h1>THIS'S <span>{{object.name}}</span></h1>
+    <p>{{object.business_profile.intro}}
+    </p>
+    <a href="#about"><button class="btn">about us <i class="fas fa-user"></i></button></a>
+
+
+</section>
+
+<!-- home section ends -->
+
+<!-- about section starts  -->
+
+<section class="about" id="about">
+
+<h1 class="heading"> <span>about</span> us </h1>
+
+<div class="row">
+
+    <div class="info">
+        <h3> <span> Company Name : </span>{{object.name}}</h3>
+        <h3> <span> Established : </span>{{object.business_profile.established}}</h3>
+        <h3> <span> Founder : </span>{{object.business_profile.founder}}</h3>
+        <h3> <span> Moto : </span>{{object.business_profile.moto}}</h3>
+        <h3> <span> language : </span>{{object.business_profile.language}}</h3>
+    </div>
+
+    <div class="counter">
+
+        <div class="box">
+            <span>{{object.business_profile.experience_year}}+</span>
+            <h3>years of experience</h3>
+        </div>
+
+        <div class="box">
+            <span>{{object.business_profile.service_provided}}+</span>
+            <h3>service provided</h3>
+        </div>
+
+        <div class="box">
+            <span>{{object.business_profile.happy_customers}}+</span>
+            <h3>happy customers</h3>
+        </div>
+
+        <div class="box">
+            <span>{{object.business_profile.Awards_won}}+</span>
+            <h3>awards won</h3>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- about section ends -->
+
+<!-- service section starts  -->
+
+<section class="service" id="service">
+
+<h1 class="heading"> our <span>Sevice</span> </h1>
+
+<div class="box-container">
+{% for ser in object.business_service_set.all %}
+<p>{{ser.service.name}}</p>
+{% endfor %}
+</div>
+
+</section>
+
+<!-- service section ends -->
+
+<!-- employee section starts  -->
+
+<section class="employee" id="employee">
+
+<h1 class="heading"> our <span>employee</span> </h1>
+
+<div class="box-container">
+
+    <div class="box">
+        <img src="{% static 'business/images/anup.jpg' %}" alt="">
+    </div>
+    <div class="box">
+        <img src="{% static 'business/images/samir.jpg' %}" alt="">
+    </div>
+    <div class="box">
+        <img src="{% static 'business/images/ranjit1.jpg' %}" alt="">
+    </div>
+    <div class="box">
+        <img src="{% static 'business/images/gauriDon.jpg' %}" alt="">
+    </div>
+
+</div>
+
+</section>
+
+<!-- employee section ends -->
+
+<!-- contact section starts  -->
+
+<section class="contact" id="contact">
+
+<h1 class="heading"> <span>contact</span> us </h1>
+
+<div class="row">
+
+    <div class="content">
+
+        <h3 class="title">contact info</h3>
+
+        <div class="info">
+            <h3> <i class="fas fa-envelope"></i>{{object.email}}</h3>
+            <h3> <i class="fas fa-phone"></i> {{object.phone}} </h3>
+            <h3> <i class="fas fa-map-marker-alt"></i>{{object.street_address}}</h3>
+        </div>
+        
+    </div>
+
+    <form action="">
+
+        <input type="text" placeholder="name" class="box">
+        <input type="email" placeholder="email" class="box">
+        <input type="text" placeholder="Service Needed" class="box">
+        <textarea name="" id="" cols="30" rows="10" class="box message" placeholder="message"></textarea>
+        <button type="submit" class="btn"> send <i class="fas fa-paper-plane"></i> </button>
+
+    </form>
+
+</div>
+
+</section>
+
+<!-- contact section ends -->
+
+
+<!-- scroll top button  -->
+
+<a href="#home" class="top">
+    <img src="images/scroll-top-img.png" alt="">
+</a>
+
+{% endblock %}

@@ -1,0 +1,215 @@
+{% load static %}
+{% load custom_tags %}
+{% url 'adminbusiness:business-dash' as businessDash_url %}
+{% url 'adminbusiness:edit-business-dash' as editBusinessDash_url %}
+{% url 'adminbusiness:edit-business-profile-dash' as editProfileBusinessDash_url %}
+{% url 'adminbusiness:get-service-dash' as getService_url %}
+{% url 'adminbusiness:get-worker-dash' as getWorker_url %}
+{% url 'adminbusiness:change-password-dash' as changePasswordDash_url %}
+{% url 'adminbusiness:business-hiring-list' as businessHiringListPage %}
+{% url 'adminbusiness:business-all-notification-page' as businessNotificationPage_url %}
+{% url 'adminbusiness:get-gallery-dash' as getgallery_url %}
+
+
+
+
+<style>
+.active{
+  background-color: #093B60;
+  color: white;
+}
+
+.active:hover{
+  background-color: #093B60;
+  color: white;
+}
+
+.active .nav-link{
+  color: white;
+}
+
+.active .nav-link:hover{
+  color: white;
+}
+
+.nav-link{
+  color: #093B60;
+  margin-left: -1rem;
+}
+
+.nav-link>a>span{
+  margin-left: -1rem;
+  font-size: small;
+}
+
+.nav-link:hover{
+  color: #093B60;
+}
+    
+
+.business-name{
+
+  font-weight: bold;
+  background-color:  #093B60;
+  text-align: center;
+  color: white;
+}
+.business-name:hover{
+  background-color: #093B60;
+  color: white;
+}
+
+.business-logout:hover{
+  background-color: #D32D27;
+  color:white;
+}
+
+a list-group-item-action .active{
+  background-color: #093B60;
+}
+</style>
+
+
+<header>
+  <!-- Sidebar -->
+  <nav
+       id="sidebarMenu"
+       class="collapse d-lg-block sidebar collapse bg-white"
+       >
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <ol class="nav-item {% if request.path == businessDash_url %}active{% endif %}">
+          <a class="nav-link" href="{{businessDash_url}}"> <i class="fas fa-tachometer-alt fa-fw me-3"></i
+            ><span>Dashboard</span></a>
+        </ol>
+        <ol class="nav-item {% if request.path == getService_url %}active{% endif %}">
+          <a class="nav-link" href="{{getService_url}}"> <i class="fas fa-anchor fa-fw me-3"></i
+            ><span>Services</span></a>
+        </ol>
+        <ol class="nav-item {% if request.path == businessHiringListPage %}active{% endif %}">
+          <a class="nav-link" href="{{businessHiringListPage}}"> <i class="fas fa-chart-pie fa-fw me-3"></i
+            ><span>My Hirings</span></a>
+        </ol>
+        <ol class="nav-item {% if request.path == getWorker_url %}active{% endif %}">
+          <a class="nav-link" href="{{getWorker_url}}"> <i class="fas fa-users fa-fw me-3"></i
+            ><span>Workers</span></a>
+        </ol>
+        <ol class="nav-item {% if request.path == getgallery_url %}active{% endif %}">
+          <a class="nav-link" href="{{getgallery_url}}"> <i class="fas fa-camera-retro fa-fw me-3"></i
+            ><span>Gallery</span></a>
+        </ol>
+        <ol class="nav-item  {% if request.path == businessNotificationPage_url %}active{% endif %}">
+          <a class="nav-link" href="{{businessNotificationPage_url}}"> <i class="fas fa-envelope fa-fw me-3"></i
+            ><span>Notification</span></a>
+        </ol>
+      </div>
+    </div>
+  </nav>
+  <!-- Sidebar -->
+
+  <!-- Navbar -->
+  <nav
+       id="main-navbar"
+       class="navbar navbar-expand-lg navbar-light bg-white fixed-top"
+       >
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button
+              class="navbar-toggler"
+              type="button"
+              data-mdb-toggle="collapse"
+              data-mdb-target="#sidebarMenu"
+              aria-controls="sidebarMenu"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              >
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Brand -->
+      <a class="navbar-brand" href="#" style="height: 5px">
+        <img class="img-fluid" src="{% static 'img/navbar/logo.png' %}" id="Logo" />
+      </a>
+      
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+        {% Business_show_notifications %}  
+
+        <!-- Avatar -->
+        <li class="nav-item dropdown">
+          <a
+             class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center"
+             href="#"
+             id="navbarDropdownMenuLink"
+             role="button"
+             data-mdb-toggle="dropdown"
+             aria-expanded="false"
+             >        
+        {% if user.business.logo %} 
+            <img
+                 src="{{ user.business.logo.url }}"
+                 
+                 height="40"
+                 width="40"
+                 style="border-radius: 50%;"
+                 alt=""
+                 loading="lazy"
+                 />
+                 {% else %}
+                 <img
+                 src="https://www.gravatar.com/avatar/3b3be63a4c2a439b013787725dfce802?d=identicon"
+                 height="40"
+                 width="40"
+                 style="border-radius: 50%;"
+                 alt=""
+                 loading="lazy"
+                 />
+        {% endif %}
+          </a>
+            <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navbarDropdownMenuLink"
+                >
+                <li><a class="dropdown-item business-name"><span>{{user.business.name}}</span></a></li>  
+              <li>
+                <a
+                href="{{editBusinessDash_url}}"
+                class="list-group-item list-group-item-action py-2"
+                >
+               <span>Edit Profile</span>
+             </a></li>
+
+             <li>
+              <a
+              href="{{changePasswordDash_url}}"
+              class="list-group-item list-group-item-action py-2"
+              >
+             <span>Change password</span>
+           </a></li>
+
+           <!-- view business page -->
+           {% if  user.business.slug %}
+          <a
+          href="{% url 'business:business-profile' user.business.slug %}"
+          target="__blank"
+          class="list-group-item list-group-item-action py-2
+          "
+          ><span>View business Page</span></a
+         >
+         {% endif %}
+         <a
+         href="{{editProfileBusinessDash_url}}"
+         class="list-group-item list-group-item-action py-2
+         "
+         ><span>Edit business Page</span></a
+              
+              <li><a class="dropdown-item business-logout" href="{% url 'logout'%}" class="list-group-item list-group-item-action py-2" >Logout</a></li>
+            </ul>
+        </li>
+      </ul>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
