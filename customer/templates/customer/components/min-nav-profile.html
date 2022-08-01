@@ -1,0 +1,66 @@
+{% url 'customer:customerprofile' as userprofile_url %}
+{% url 'customer:customer-hiring-page' as customer_hiring_url %}
+{% url 'customer:customer-bookmark-page' as customer_bookmark_url %}
+<style>
+.navbar-profile{
+  border: 0;
+  border-color: #093B60;
+border-radius: 27.5px;
+box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
+overflow: hidden;
+height: auto;
+}
+.nav-item{
+  background-color: white;
+}
+.active{
+  background-color: #093B60;
+  color: white;
+}
+
+.active:hover{
+  background-color: #093B60;
+  color: white;
+}
+
+.active .nav-link{
+  color: white;
+}
+
+.active .nav-link:hover{
+  color: white;
+}
+
+.nav-link{
+  color: #093B60;
+}
+
+.nav-link:hover{
+  color: #093B60;
+}
+
+.nav-fill{
+  background-color: #093B60;
+}
+
+
+
+</style>
+<div class="m-4 border border-secondary  border-3 navbar-profile" class="navs">
+  <ul class="nav nav-pills nav-fill">
+      <li class="nav-item {% if request.path == userprofile_url %} active {% endif %}">
+          <a class="nav-link" href="{% url 'customer:customerprofile' %}">My Profile</a>
+      </li>
+  
+    <li class="nav-item {% if request.path == customer_hiring_url %} active {% endif %}">
+      <a class="nav-link rounded-0"
+        href="{% url 'customer:customer-hiring-page' %}">
+        Hirings</a>
+    </li>
+    <li class="nav-item {% if request.path == customer_bookmark_url %} active {% endif %}">
+      <a class="nav-link rounded-0"
+        href="{% url 'customer:customer-bookmark-page' %}">
+        Bookmarks</a>
+    </li>
+  </ul>
+</div>

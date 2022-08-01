@@ -1,0 +1,97 @@
+{% extends 'base/layout.html' %} 
+{% load static %}
+{% block title %} Hirings {% endblock %} {% block additional_head %}
+<style>
+  a {
+    text-decoration: none;
+  }
+
+  thead{
+    background-color: #093B60;
+    color: white;
+  }
+  
+  .table-responsive {
+  border-color: #093B60;
+  border-radius: 2px;
+  box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43);
+  overflow: hidden;
+  }
+</style>
+{% endblock %} {% block main_content %}
+
+<div class="container">
+  {% include 'customer/components/min-nav-profile.html' %}
+  <div class="m-2">
+    <div class="row">
+      <div class="col-12 table-responsive p-0">
+        <table
+          class="table table-striped table-hover"
+        >
+          <thead >
+            <tr>
+              <th scope="col">S.N</th>
+              <th scope="col">Business</th>
+              <th scope="col">Worker</th>
+              <th scope="col">Message</th>
+              <th scope="col">Status</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for hire in object_list %}
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>
+                <a
+                  class="text-dark"
+                  href="{% url 'business:business-profile' hire.business_service.business.slug %}"
+                  >{{hire.business_service.business.name}}</a
+                >
+                -
+                <span class="fw-light"
+                  >{{hire.business_service.service.name}}</span
+                >
+              </td>
+              <td>
+                <a
+                  href="{% if hire.worker %}{% url 'worker:worker-profile' hire.worker.slug %}{% endif %}"
+                  >{{hire.worker.name}}</a
+                >
+              </td>
+              <td>
+                <span class="fw-light" style="font-size: 12px"
+                  >{% if hire.business_message %}
+                  {{hire.business_message}} {%endif %}</span
+                >
+              </td>
+              <td>
+                <span class="badge rounded-pill bg-primary"
+                  >{{hire.get_status_display}}</span
+                >
+              </td>
+              <td>
+                {% if hire.get_status_display == 'Pending' %}
+                <form
+                  method="POST"
+                  action="{% url 'customer:customer-hiring-delete-view' hire.id %}"
+                >
+                  {% csrf_token %}<input
+                    onclick="return confirm('Are you sure want to Cancel this hiring?')"
+                    type="submit"
+                    class="btn btn-sm btn-danger"
+                    value="Cancel"
+                  />
+                </form>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock main_content %}
