@@ -1,0 +1,215 @@
+/*--------------------------------------------------------------
+# Texts
+--------------------------------------------------------------*/
+
+.search-place {
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px black;
+  position: absolute;
+  bottom: 150px;
+  left: 25%;
+  width: 50%;
+}
+/*--------------------------------------------------------------
+# Services
+--------------------------------------------------------------*/
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+
+.search-form {
+  position: relative;
+  background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),
+    url(../images/services_cover_image.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 40vh;
+}
+
+.search-bar-group {
+  position: absolute;
+  left: 25%;
+  width: 50%;
+  bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .search-form {
+    min-height: 30vh;
+  }
+  .search-bar-group {
+    left: 15%;
+    width: 70%;
+  }
+  .search-place {
+    left: 15%;
+    width: 70%;
+    bottom: 100px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .search-bar-group {
+    left: 10%;
+    width: 80%;
+  }
+  .search-place {
+    left: 10%;
+    width: 80%;
+    bottom: 100px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Services
+--------------------------------------------------------------*/
+.primary {
+  background-color: #f8fbfe;
+}
+.services .icon-box {
+  text-align: center;
+  padding: 70px 20px 80px 20px;
+  transition: all ease-in-out 0.3s;
+  background: #fff;
+  box-shadow: 0px 5px 90px 0px rgba(110, 123, 131, 0.05);
+}
+
+.services .icon-box .icon {
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: ease-in-out 0.3s;
+  position: relative;
+}
+
+.services .icon-box .icon i {
+  font-size: 36px;
+  transition: 0.5s;
+  position: relative;
+}
+
+.services .icon-box .icon svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.services .icon-box .icon svg path {
+  transition: 0.5s;
+  fill: #f5f5f5;
+}
+
+.services .icon-box h4 {
+  font-weight: 600;
+  margin: 10px 0 15px 0;
+  font-size: 22px;
+}
+
+.services .icon-box h4 a {
+  color: #124265;
+  transition: ease-in-out 0.3s;
+}
+
+.services .icon-box p {
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.services .icon-box:hover {
+  border-color: #fff;
+  box-shadow: 0px 0 35px 0 rgba(0, 0, 0, 0.08);
+}
+
+.services .iconbox-blue i {
+  color: #093B60;
+}
+
+.services .iconbox-blue:hover .icon i {
+  color: #fff;
+}
+
+.services .iconbox-blue:hover .icon path {
+  fill: #093B60;
+}
+
+.services .iconbox-orange i {
+  color: #ffa76e;
+}
+
+.services .iconbox-orange:hover .icon i {
+  color: #fff;
+}
+
+.services .iconbox-orange:hover .icon path {
+  fill: #ffa76e;
+}
+
+.services .iconbox-pink i {
+  color: #e80368;
+}
+
+.services .iconbox-pink:hover .icon i {
+  color: #fff;
+}
+
+.services .iconbox-pink:hover .icon path {
+  fill: #e80368;
+}
+
+.services .iconbox-yellow i {
+  color: #ffbb2c;
+}
+
+.services .iconbox-yellow:hover .icon i {
+  color: #fff;
+}
+
+.services .iconbox-yellow:hover .icon path {
+  fill: #ffbb2c;
+}
+
+.services .iconbox-red i {
+  color: #ff5828;
+}
+
+.services .iconbox-red:hover .icon i {
+  color: #fff;
+}
+
+.services .iconbox-red:hover .icon path {
+  fill: #ff5828;
+}
+
+.services .iconbox-teal i {
+  color: #11dbcf;
+}
+
+.services .iconbox-teal:hover .icon i {
+  color: #fff;
+}
+
+.services .iconbox-teal:hover .icon path {
+  fill: #11dbcf;
+}
+
+a:link {
+  text-decoration: none;
+}
