@@ -1,0 +1,89 @@
+{% extends 'adminbusiness/main/business-layout.html' %} 
+{% load static %} 
+{% block title %} Hirings {% endblock %} {% block additional_head %}
+<link href="{% static 'css/business-dashboard.css' %}" rel="stylesheet" />
+<style>
+  .container {
+    margin-top: 6rem;
+  }
+  .btn-light{
+        background-color: #e1e1e1;
+    }
+</style>
+{% endblock %} {% block main_content %}
+
+<div class="container">
+  <div class="m-2">
+    <div class="row">
+      <div class="col-md-12 offset">
+        <div class="card py-2 px-2 table-responsive">
+          <table class="table table-responsive table-white">
+            <tr class="btn-light">
+              <th>#</th>
+              <th>Service Name</th>
+              <th>Customer</th>
+              <th>Worker</th>
+              <th>Customer Message</th>
+              <th>My Message</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+            {% for hire in object_list %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ hire.business_service.service.name }}</td>
+              <td>{{ hire.customer.name }}</td>
+              <td>{{ hire.worker.name }}</td>
+              <td>{{ hire.customer_message}}</td>
+              <td>{{ hire.business_message}}</td>
+              <td>
+                <span class="badge rounded-pill bg-primary"
+                  >{{hire.get_status_display}}</span
+                >
+              </td>
+
+              <td>
+                {% if hire.get_status_display == 'Pending' %}
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  style="background-color: #093B60"
+                  data-mdb-toggle="modal"
+                  data-mdb-target="#accept-worker-business{{hire.id}} "
+                  data-mdb-whatever="@getbootstrap"
+                >
+                  Accept
+                </button>
+                {% include 'adminbusiness/base/selecting_worker_hiring.html' with hire=hire workers=workers %}
+
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  data-mdb-toggle="modal"
+                  data-mdb-target="#reject-worker-business{{hire.id}} "
+                  data-mdb-whatever="@getbootstrap"
+                >
+                  Reject
+                </button>
+                {% include 'adminbusiness/base/rejecting_worker_hiring.html' with hire=hire workers=workers %} 
+                {% endif %} 
+                {% if hire.get_status_display == 'Accepted' %}
+                <a
+                  class="btn btn-primary"
+                  href="{% url 'adminbusiness:complete-business-hiring' hire.id %}"
+                  onclick="return confirm('Are you sure you want to complete this hiring?')"
+                  >Complete</a
+                >
+
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock main_content %}
