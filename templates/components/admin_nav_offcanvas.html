@@ -1,0 +1,54 @@
+{% load static %}
+<div class="container-fluid" id="Header">
+    <nav class="navbar navbar-expand-sm">
+        <h1>       
+            <a class="navbar-brand fw-bold m-0" href="#">Ghar<span>Dailo</span></a>        
+            <button class="btn m-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" id="offcanvas_opener" onclick="hideOp()">
+                <span class="fas fa-angle-double-right"></span>
+            </button> 
+        </h1>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onclick="setH()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="ms-auto" id="UDA">  
+                <a class="fw-bold" href="" id="Username">{{request.user.username}}</a>
+                <a class="btn lgo" href="{% url 'logout' %}">Logout</a>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="offcanvas offcanvas-start sidebar_nav" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header ps-0 pe-2 py-0">
+        <img class="img-fluid rounded-circle" src="{% static 'img/navbar/logo.png' %}" id="Logo" />  
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" id="offcanvas-close" onclick="showOp()"></button>
+    </div>
+    <div class="offcanvas-body py-0">
+        <nav class="navbar">
+            <ul class="navbar-nav">
+                <li><a href="{% url 'admindashboard:my-admin-dashboard' %}" class="nav-link {{dashboard}} px-2">
+                    <span class="fas fa-tachometer-alt me-2"></span> <span>Dashboard</span>
+                </a></li>
+                <li class="dropdown-divider"></li>
+                <li><a href="{% url 'admindashboard:service-list' %}" class="nav-link {{service}} px-2">
+                    <span class="fas fa-tools me-2"></span> <span>Services</span>
+                </a></li>
+                <li class="dropdown-divider"></li>
+                <li><a href="{% url 'admindashboard:show-all-business' %}" class="nav-link {{business}} px-2">
+                    <span class="fas fa-user-tie me-2"></span> <span>Businesses</span>
+                </a></li>
+                <li class="dropdown-divider"></li>
+                <li><a href="{% url 'admindashboard:my-admin-customer-list-view' %}" class="nav-link {{customer}} px-2">
+                    <span class="fas fa-user-friends me-2"></span> <span>Customers</span>
+                </a></li> 
+                <li class="dropdown-divider"></li>
+                <li><a href="{% url 'admindashboard:report-user' %}" class="nav-link {{report}} px-2">
+                    <span class="fas fa-exclamation-circle me-2"></span> <span>Reports</span>
+                </a></li> 
+                <li class="dropdown-divider"></li>
+            </ul>
+        </nav>
+    </div>
+</div>
