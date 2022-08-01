@@ -1,0 +1,65 @@
+{% extends 'worker/main/worker-layout.html' %}
+{% load static %}
+{% block title %}
+    Worker Dashboard
+{% endblock %}
+{% block additional_head %}
+
+<style>
+   .container{
+       margin-top: 6rem;
+   }
+   .card{
+    background-color: #093B60;
+   }
+    
+
+</style>
+{% endblock %}
+
+{% block main_content %} 
+<!-- total service -->
+<div class="container">
+  <div class="row">
+      <!-- total service -->
+        <div class="col-xl-3 col-sm-6 col-12 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between px-md-1">
+                <div>
+                  <h3 class="text-light">{{hiring_completed}}</h3>
+                  <p class="mb-0 text-light">Total hiring completed</p>
+                </div>
+                <div class="align-self-center"> 
+                  <a href="{% url 'adminbusiness:post-service-dash' %}"><i class="fa fa-wrench  text-light fa-3x"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+  
+      <!-- total customer -->
+      <div class="col-xl-3 col-sm-6 col-12 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between px-md-1">
+              <div>
+                <h3 class="text-light">{{hiring_onhold}}</h3>
+                <p class="mb-0 text-light">Waiting Customer</p>
+              </div>
+              <div class="align-self-center">
+                <i class="fa fa-users text-light fa-3x"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  {% endblock %}
+
+{% block additional_body %}
+
+{% endblock %}
+
+

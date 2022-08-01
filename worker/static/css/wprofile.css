@@ -1,0 +1,35 @@
+body {
+    background-color: white;
+    border-radius: 10px
+}
+
+.card {
+    width: 40rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #093B60;
+}
+
+.stats {
+    background: #f2f5f8 !important;
+    color: #000 !important
+}
+
+.articles {
+    font-size: 10px;
+    color: #a1aab9
+}
+
+.followers {
+    font-size: 10px;
+    color: #a1aab9
+}
+
+.number2 {
+    font-weight: 500
+}
+
+.button:hover{
+background-color: rgb(201, 201, 201);
+}
+

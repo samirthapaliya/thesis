@@ -1,0 +1,33 @@
+{% extends 'base/layout.html' %}
+{% load static %}
+
+{% block additional_head %}
+<link rel="stylesheet" href="{% static 'css/wprofile.css' %}">
+{% endblock %}
+
+{% block main_content %}
+
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card p-3">
+        <div class="d-flex align-items-center">
+        {% if profile.picture %}
+            <div class="image"> <img src="{{profile.picture.url}}" class="rounded" width="155"> </div>
+        {% else %}
+            <div class="image"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png" class="rounded" width="155"> </div>
+        {% endif %}
+            <div class="ms-3 w-100">
+                <h4 class="mb-0 mt-0" style="color: white;">{{profile.business.name}}</h4> <span style="color: white;">{{profile.name}}</span>
+                <!-- <p style="font-size: small; font-weight: bold; ">{{profile.phone}}</p> -->
+                <div class="p-2 mt-2  d-flex justify-content-between rounded text-white stats">
+                    <div class="d-flex flex-column"> <span class="followers">Hiring Completed</span> <span class="number2">{{hiring_completed}}</span> </div>
+                    <div class="d-flex flex-column"> <span class="followers">Hiring On Progress</span> <span class="number2">{{hiring_on_progress}}</span> </div>
+                    <div class="d-flex flex-column"> <span class="followers">Contact</span> <span class="number2">{{profile.phone}}</span> </div>
+                </div>
+                
+                <div class="button mt-2 d-flex flex-row align-items-center"> <a class="btn btn-sm btn-outline-primary w-100" style="background-color: white; color:#093B60" href="{% url 'customer:customer-hiring-page' %}">Back to Hirings</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

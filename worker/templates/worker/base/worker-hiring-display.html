@@ -1,0 +1,69 @@
+{% extends 'worker/main/worker-layout.html' %}
+{% load static %}
+
+{% block title %}
+Hirings
+{% endblock %}
+
+{% block additional_head %}
+<link href="{% static 'css/business-dashboard.css' %}" rel="stylesheet">
+<style>
+    .container {
+        margin-top: 6rem;
+    }
+    .btn-light{
+        background-color: #e1e1e1;
+    }
+    .btn-primary{
+        background-color: #093B60;
+    }
+</style>
+{% endblock %}
+
+{% block main_content %}
+
+<div class="container">
+    <div class="m-2">
+        <div class="row">
+            <div class="col-md-12 offset">
+
+
+                <div class="card py-2 px-2 table-responsive">
+
+                    <table class="table table-responsive table-white">
+                        <tr class="btn-light">
+                            <th>#</th>
+                            <th>Service Name</th>
+                            <th>Customer</th>
+                            <th>Customer Message</th>
+                            <th>Business Message</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                        {% for hire in object_list %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ hire.business_service.service.name }}</td>
+                            <td>{{ hire.customer.name }}</td>
+                  
+                            <td>{{ hire.customer_message}}</td>
+                            <td>{{ hire.business_message}}</td>
+                            <td><span class="badge rounded-pill bg-primary">{{hire.get_status_display}}</span></td>
+                            
+                            <td>
+                                {% if hire.get_status_display == 'Accepted'  %}
+                                <a class="btn btn-primary" href="{% url 'worker:complete-worker-hiring' hire.id %}">Complete</a>
+                                 
+                                {% endif %}
+                            </td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main_content %}
