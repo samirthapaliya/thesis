@@ -1,0 +1,115 @@
+/* navbar */
+#Header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: rgb(0, 0, 0, 25%) 2px 0px 10px;
+    background-color: white;
+}
+#Header .navbar-brand {
+    color: #4300fc;
+    font-size: 32px;
+}
+#Header nav h1 a span {
+    color: #008f37;
+}
+#offcanvas_opener {
+    padding:0;
+}
+#offcanvas_opener span {
+    color: #5e2ced;
+    font-size: 35px;
+    margin-top: 5px;
+}
+#offcanvas_opener:focus {
+    box-shadow: none;
+}
+.navbar-toggler-icon {
+    background-image: url("/static/img/navbar/button.png");
+}
+.lgo {
+    border-radius: 10px;
+    color: #ed2c3c;
+    background-color: #f8ccd0;
+    margin-left: 5px;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
+.lgo:hover {
+    color: white;
+    background-color: #f52843;
+}
+#Profile {
+    height: 60px;
+    width: 60px;
+    position: relative;
+}
+#Username {
+    font-size: 18px;
+    color: #5e2ced;
+    text-decoration: none;
+}
+@media screen and (max-width: 600px) {
+    .lgo,
+    #Profile,
+    #Username {
+        display: none;
+        margin: 0;
+    }
+}
+@media screen and (max-width: 575px) {
+    #UDA {
+        margin-top: 5px;
+        margin-bottom: 10px;
+        display: grid;
+        grid-template-columns: 80px;
+        grid-gap: 10px 0;
+    }
+    .lgo,
+    #Profile,
+    #Username {
+        display: block;
+        margin: 0;
+    }
+    #Profile {
+        position: static;
+    }
+    #Username {
+        width: 300px;
+    }
+}
+
+/* offcanvas */
+main{
+    display: flex;
+    flex-direction: column;
+}
+#Logo {
+    height: 60px;
+    width: 60px;
+}
+.sidebar_nav {
+    width: 200px;
+}
+.offcanvas-body .navbar-nav .nav-link {
+    color: black;
+    font-size: 20px;
+    border-radius: 10px;
+}
+.offcanvas-body .navbar-nav .nav-link:hover {
+    color: White;
+    background-color: #5e2ced;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
+.offcanvas-body .navbar-nav .selected {
+    color: White;
+    background-color: #5e2ced;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
+@media screen and (max-width: 575px) {
+    .sidebar_nav {
+        width: 160px;
+    }
+    .offcanvas-body .navbar-nav .nav-link {
+        font-size: 14px;
+    }
+}

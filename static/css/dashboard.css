@@ -1,0 +1,176 @@
+.Registration {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+}
+.Customer, .Business, .Admin {
+    font-size:  45px;
+    padding: 15px;
+    padding-left: 5px;
+    padding-right: 65px;
+    border-radius: 150px 5px 150px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.Customer a, .Business a, .Admin a {    
+    text-decoration: none;
+}
+.Registration .logo{
+    font-size:  90px;
+    text-shadow: rgba(0, 0, 0, 0.20) 15px 15px 10px;
+}
+.Customer {    
+    background-color: white;
+    box-shadow: #9effc3 0px 0px 20px;
+}
+.Business {    
+    background-color: white;
+    box-shadow: #bba2ff 0px 0px 20px;
+}
+.Admin {   
+    background-color: white; 
+    box-shadow: #ffa0ad 0px 0px 20px;
+}
+.Customer span {
+    color: #00b646;
+}
+.Business span {
+    color: #3200bd;
+}
+.Admin span {
+    color: #b90019;
+}
+.ProgressBars {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.ProgressBars .Bar {
+    border-radius: 80px 5px 80px 5px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 50%) 0px 0px 20px;
+}
+.ProgressBars .Bar .circle{
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+.Bar .circle:hover .box {
+    transform: translate(8%, -109%) scale(1.08);
+}
+.Bar .circle .box {
+    transform: translate(8%,-109%);
+    background-color: white;
+    height: 85%;
+    width: 85%;
+    border-radius: 50%;
+    transition: all 0.5s;
+}
+.bar {
+    transform: rotate(-135deg);
+}
+.Bar .circle .box span {
+    transform: translate(-45%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size:  45px;
+    font-weight: 400;
+    background: linear-gradient(to left,#fc1f3c, #652efc, #2dfa7c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.ProgressBars .Bar .text {    
+    font-size:  30px;
+    font-weight: 400;
+    padding-right: 16px;
+    background: linear-gradient(to left, #fc1f3c, #652efc, #2dfa7c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.ProgressBars .Bar .text .logo {    
+    font-size:  80px;
+    text-shadow: rgba(0, 0, 0, 0.20) 15px 15px 10px;
+}
+@media screen and (max-width: 1475px) {
+    .ProgressBars {
+        gap: 75px;
+    } 
+}
+@media screen and (max-width: 880px) {
+    .ProgressBars {
+        gap: 50px;
+    } 
+}
+@media screen and (max-width: 600px) {
+    .Registration {
+        gap: 25px;
+    }
+    .Customer, .Business, .Admin {
+        font-size:  20px;
+        padding-right: 40px;
+    }
+    .Registration .logo{
+        font-size:  30px;
+        text-shadow: rgba(0, 0, 0, 0.20) 8px 8px 10px;
+    }
+}
+@media screen and (max-width: 590px) {
+    .ProgressBars {
+        gap: 25px;
+    }      
+    .ProgressBars .Bar{
+        border-radius: 60px 5px 60px 5px;
+    }
+    .ProgressBars .Bar .circle{
+        height: 70px;
+        width: 70px;
+    }
+    .Bar .circle .box span {
+        font-size:  20px;
+    }
+    .ProgressBars .Bar .text {    
+        font-size:  15px;
+    } 
+    .ProgressBars .Bar .text .logo {    
+        font-size:  30px;
+        text-shadow: rgba(0, 0, 0, 0.20) 8px 8px 10px;
+    }
+    .Bar .circle:hover .box {
+        transform: translate(5%, -112%) scale(1.08);
+    }
+    .Bar .circle .box {
+        transform: translate(5%,-112%);
+    }
+}
+@media screen and (max-width: 400px) {
+    .Registration {
+        gap: 25px;
+    }
+    .Customer, .Business, .Admin {
+        font-size:  13px;
+        padding-right: 25px;
+    }
+    .Registration .logo{
+        font-size:  20px;
+        text-shadow: rgba(0, 0, 0, 0.20) 5px 5px 10px;
+    }
+}

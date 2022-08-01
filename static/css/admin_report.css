@@ -1,0 +1,120 @@
+.search_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.search_box form {
+    border: 2px solid #5e2ced;
+    border-radius: 8px;  
+    box-shadow: rgb(0, 0, 0, 25%) 0px 5px 20px;
+    padding: 0px 0px 0px 5px;
+}
+.search_box form select {
+    border: 1px solid white;
+    padding-left: 5px;
+    height: 40px;
+    width: 200px;
+}
+.search_box form select option {
+    color: #5e2ced;
+    font-weight: bold;
+}
+.search_box form select:focus {
+    border: 1px solid white;
+    padding-left: 5px;
+    height: 40px;
+    width: 200px;
+}
+.search_box form label {
+    color: #5e2ced;
+    background-color: white;
+    border-radius: 8px  0px 0px 8px;  
+    padding: 7px 0px 7px 0px;
+    font-weight: bold;
+}
+::placeholder {
+    font-family: cursive;
+    color: rgb(125, 184, 135);
+}
+.search_box select:focus {
+    border: 4px solid #5e2ced;
+    outline:none;
+}
+.search_box button {
+    height: 50px;
+    width: 50px;
+    margin-top: -7px;
+    margin-left: -5px;
+    font-size: 20px;
+}
+.search_box button span {
+    border-radius: 0px 8px 8px 0px;  
+    background-color: #5e2ced;
+    padding: 9px 10px 15px 9px;
+    color: white;
+}
+.table-responsive {
+    border-radius: 5px;
+    background-image: linear-gradient(#36d1dc , #5b86e5 );
+    box-shadow: rgb(0, 0, 0, 25%) 0px 5px 20px;
+}
+.table-responsive th, .table-responsive td {
+    color: white;
+    text-align: center; 
+    vertical-align: middle;
+}
+.table-responsive th {
+    background-color: rgb(0, 0, 0, 40%);
+}
+.table-responsive .status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.change_status{
+    color: white;
+    border-radius: 8px;
+    background-color: #5b86e5;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
+#id_status {    
+    border: 1px solid black;
+    border-radius: 8px;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
+@media screen and (max-width: 1150px) {
+    .search_box input {
+        width: 400px;
+    }
+    .table-responsive {
+        font-size: 15px;
+    }
+    .table-responsive tbody tr td a{
+        font-size: 15px;
+    }
+    .search_box form {
+        font-size: 13px;
+    }
+    .search_box form select {
+        width: 100px;
+    }
+    .search_box form select:focus {
+        width: 100px;
+    }
+}
+@media screen and (max-width: 690px) {    
+    .search_box form {
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .search_box button span {
+        border-radius: 8px;  
+        color: #5e2ced;
+        background-color: transparent;
+        padding: 0px;
+    }
+}

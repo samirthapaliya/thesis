@@ -1,0 +1,90 @@
+.search_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.search_box form {
+    border-radius: 8px;    
+    background-color: #00cdac;
+    box-shadow: rgb(0, 0, 0, 25%) 0px 5px 20px;
+}
+.search_box input {
+    border: 1px solid #00cdac;
+    border-radius: 8px 0 0 8px;  
+    padding-left: 5px;
+    height: 50px;
+    width: 800px;
+}
+::placeholder {
+    font-family: cursive;
+    color: rgb(125, 184, 135);
+}
+.search_box input:focus {
+    border: 4px solid #00cdac;
+    outline:none;
+}
+.search_box button {
+    height: 50px;
+    width: 50px;
+    margin-top: -7px;
+    margin-left: -5px;
+    font-size: 20px;
+}
+.search_box button span {
+    color: white;
+}
+.table-responsive {
+    border-radius: 5px;
+    background-image: linear-gradient(#36d1dc , #5b86e5 );
+    box-shadow: rgb(0, 0, 0, 25%) 0px 5px 20px;
+}
+.table-responsive th, .table-responsive td {
+    color: white;
+    text-align: center; 
+    vertical-align: middle;
+}
+.table-responsive th {
+    background-color: rgb(0, 0, 0, 40%);
+}
+.table-responsive tbody tr td .active, .table-responsive tbody tr td .verified {
+    color: #3ced2c;
+    font-size: 25px;
+}
+.table-responsive tbody tr td .inactive, .table-responsive tbody tr td .not_verified {
+    color: #ed2c2c;
+    font-size: 25px;
+}
+.table-responsive tbody tr td .edit{
+    color: #5e2ced;
+    font-size: 25px;
+}
+.table-responsive tbody tr td img{
+    width: 100px;
+}
+
+@media screen and (max-width: 1150px) {
+    .search_box input {
+        width: 400px;
+    }
+    .table-responsive {
+        font-size: 15px;
+    }
+    .table-responsive tbody tr td a{
+        font-size: 15px;
+    }
+    .table-responsive tbody tr td img{
+        height: 40px;
+        width: 40px;
+    }
+}
+@media screen and (max-width: 690px) {
+    .search_box input {
+        width: 200px;
+    }
+}
+@media screen and (max-width: 400px) {
+    .search_box input {
+        width: 125px;
+    }
+}

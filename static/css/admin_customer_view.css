@@ -1,0 +1,160 @@
+.back {
+    font-size: 30px;
+    color: #ef629f;
+}
+.profile img{
+    height: 350px;
+    border-radius: 10px;  
+    box-shadow: rgb(0, 0, 0, 50%) 0px 5px 20px;
+}
+.navigate {
+    border-radius: 30px;
+    padding-left: 20px;
+    padding-right: 20px;    
+    height: 60px;
+    background-color: #ef629f;
+    box-shadow: rgb(0, 0, 0, 50%) 5px 5px 10px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.Line {
+    width: 3px;
+    height: 55px; 
+    background-color: white;
+    border-radius: 5px;
+}
+.navigate button {
+    font-size: 20px;
+    color: white;
+    border-radius: 0;
+}
+.navigate button:focus {
+   box-shadow: none; 
+}
+.find {
+    position: relative;
+}
+.counter {
+    position: absolute;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 50%;
+    bottom: 22px;
+    right: 1px;
+    background-color: white;
+}
+.table-responsive th, .table-responsive td {
+    color: white;
+    text-align: center; 
+    vertical-align: middle;
+}
+.details .table-responsive, .reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive , .bookmarks .table-responsive{
+    border-radius: 5px;
+    font-size: 20px;
+    background-image: linear-gradient(to right,#36d1dc , #5b86e5 );
+    box-shadow: rgb(0, 0, 0, 25%) 0px 5px 20px;
+}
+.details th {
+    background-color: rgb(0, 0, 0, 50%);    
+}
+.reviews .table-responsive table thead, .hires .table-responsive thead, .notifications .table-responsive thead, .bookmarks .table-responsive thead{    
+    background-color: rgb(0, 0, 0, 50%);
+}
+.hires img, .notifications img, .reviews img, .bookmarks img{
+    height: 100px;
+    width: 100px;    
+}
+.hire_status_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#id_status {    
+    border: 1px solid black;
+    border-radius: 8px;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
+#id_status:hover {    
+    background-color: #36d1dc;
+}
+#id_status:focus {    
+    outline: none;
+}
+.change_status{
+    color: white;
+    border-radius: 8px;
+    background-color: #5b86e5;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
+@media screen and (max-width: 1150px) {
+    .profile img{
+        height: 250px;
+    }
+    .details .table-responsive, .reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive, .bookmarks .table-responsive{
+        font-size: 15px;
+    }
+}
+@media screen and (max-width: 1060px) {  
+    .profile img{
+        height: 150px;
+    }
+    .navigate {    
+        border-radius: 22px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .Line {
+        width: 3px;
+        height: 38px; 
+    }
+    .navigate button {
+        font-size: 10px;
+    } 
+    .details label{    
+        font-size: 15px; 
+    }
+    .details p{    
+        font-size: 15px; 
+    }
+    .hires img, .notifications img, .reviews img, .bookmarks img{
+        height: 50px;
+        width: 50px;    
+    }
+}
+@media screen and (max-width: 765px) {  
+    .navigate {    
+        height: 90px;
+        padding-left: 0px;
+        padding-right: 0px;   
+    }
+    .back {
+        font-size: 20px;
+    }
+}
+@media screen and (max-width: 505px) {  
+    .navigate {    
+        height: 135px;
+    }
+}
+@media screen and (max-width: 450px) { 
+    .navigate {    
+        height: 235px;
+    }
+    .Line {
+        display: none;
+    }
+    .profile img{
+        height: 100px;
+    }
+    .details label{    
+        font-size: 10px; 
+    }
+    .details p{    
+        font-size: 10px; 
+    }
+}

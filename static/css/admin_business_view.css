@@ -1,0 +1,231 @@
+.back {
+    font-size: 30px;
+    color: #008f77;
+}
+.profile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.profile .cover_pic {    
+    height: 350px;
+    overflow: hidden;
+    border-radius: 5px;  
+    box-shadow: rgb(0, 0, 0, 50%) 0px 5px 20px;
+}
+.profile .logo { 
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    top: 70%;
+    left: 41%;
+}
+.profile .logo img {   
+    box-shadow: rgb(0, 0, 0, 100%) 0px 0px 10px;
+    border: 5px solid white;
+    height: 200px;
+    width: 200px;
+}
+.navigate {
+    border-radius: 30px;
+    padding-left: 20px;
+    padding-right: 20px;    
+    height: 60px;
+    background-color: #008f77;
+    box-shadow: rgb(0, 0, 0, 50%) 5px 5px 10px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.Line {
+    width: 3px;
+    height: 55px; 
+    background-color: white;
+    border-radius: 5px;
+}
+.navigate button {
+    font-size: 20px;
+    color: white;
+    border-radius: 0;
+}
+.navigate button:focus {
+   box-shadow: none; 
+}
+.table-responsive th, .table-responsive td {
+    color: white;
+    text-align: center; 
+    vertical-align: middle;
+}
+.details .table-responsive, .reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive, .services .table-responsive, .workers .table-responsive, .bookmarks .table-responsive{
+    border-radius: 5px;
+    font-size: 20px;
+    background-image: linear-gradient(to right,#36d1dc , #5b86e5 );
+    box-shadow: rgb(0, 0, 0, 25%) 0px 5px 20px;
+}
+.reviews .table-responsive table thead, .hires .table-responsive thead, .notifications .table-responsive thead, .services .table-responsive thead, .workers .table-responsive thead, .bookmarks .table-responsive thead{  
+    background-color: rgb(0, 0, 0, 50%);
+}
+.details th {
+    background-color: rgb(0, 0, 0, 50%);    
+}
+.gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.gallery img {
+    height: 250px;
+    box-shadow: white 0px 0px 20px;
+}
+.gallery img:hover {
+    transform: scale(1.2);
+    box-shadow: #5e2ced 0px 0px 10px;
+    transition: 0.8s;
+}
+.hires img, .notifications img, .reviews img, .bookmarks img, .workers img{
+    height: 100px;
+    width: 100px;    
+}
+.hire_status_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#id_status {    
+    border: 1px solid black;
+    border-radius: 8px;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
+#id_status:hover {    
+    background-color: #36d1dc;
+}
+#id_status:focus {    
+    outline: none;
+}
+.change_status{
+    color: white;
+    border-radius: 8px;
+    background-color: #5b86e5;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
+.find {
+    position: relative;
+}
+.counter {
+    position: absolute;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 50%;
+    bottom: 22px;
+    right: 1px;
+    background-color: white;
+}  
+@media screen and (max-width: 1150px) {
+    .profile {
+        margin-bottom: 10px;
+    }
+    .profile .cover_pic {    
+        height: 175px;
+    }
+    .profile .logo {    
+        height: 100px;
+        width: 100px;
+    }
+    .profile .logo img {  
+        height: 100px;
+        width: 100px;
+    }    
+    .details .table-responsive, .reviews .table-responsive, .hires .table-responsive, .notifications .table-responsive, .services .table-responsive, .workers .table-responsive, .bookmarks .table-responsive{
+        font-size: 15px;
+    }
+    .hires img, .notifications img, .reviews img, .bookmarks img, .workers img{
+        height: 50px;
+        width: 50px;    
+    }
+}
+@media screen and (max-width: 500px) {
+    .profile {
+        margin-bottom: -15px;
+    }
+    .profile .cover_pic {    
+        height: 87px;
+    }
+    .profile .logo {    
+        height: 50px;
+        width: 50px;
+    }
+    .profile .logo img {  
+        height: 50px;
+        width: 50px;
+    }   
+}
+@media screen and (max-width: 1485px) {
+    .navigate {
+        border-radius: 22px;
+        padding-left: 5px;
+        padding-right: 5px;    
+        height: 45px;
+    }
+    .Line {
+        width: 3px;
+        height: 38px; 
+    }
+    .navigate button {
+        font-size: 10px;
+    }  
+}
+@media screen and (max-width: 1045px) {
+    .navigate {    
+        height: 90px;
+    }
+    .details label{    
+        font-size: 15px; 
+    }
+    .details p{    
+        font-size: 15px; 
+    }
+    .gallery img {
+        height: 150px;
+    }
+}
+@media screen and (max-width: 670px) {
+    .navigate {    
+        height: 135px;
+        padding-left: 0px;
+        padding-right: 0px;   
+    }
+    .back {
+        font-size: 20px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .navigate {    
+        height: 200px;
+    }
+}
+@media screen and (max-width: 400px) {
+    .navigate {    
+        border-radius: 10px;
+        padding-left: 5px;
+        padding-right: 5px;    
+        height: 300px;      
+    }  
+    .Line {
+        display: none;
+    }
+    .details label{    
+        font-size: 10px; 
+    }
+    .details p{    
+        font-size: 10px; 
+    }
+    .gallery img {
+        height: 100px;
+    }
+}

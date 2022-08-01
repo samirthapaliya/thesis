@@ -19,13 +19,12 @@ main {
   color: rgb(5, 5, 5);
   font-size: 16px;
   padding: 6px 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   position: relative;
 }
 #Header .nav-link:hover {
   color: White;
   background-color: #093b60;
-  box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
 
 #Header .btn-outline-success {
@@ -99,7 +98,6 @@ li {
   color: white;
   background-color: #093b60;
   border-radius: 5px;
-  box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
 }
 .active_login:hover,
 .active_customer:hover,

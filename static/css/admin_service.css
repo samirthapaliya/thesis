@@ -1,0 +1,170 @@
+.success_message, .error_message {
+    padding: 0;
+    font-family: cursive;
+    font-size: 25px;
+}
+.Sauv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: cursive;
+}
+.card {
+    border: 1px solid linear-gradient(#5b86e5, #36d1dc);
+    border-radius: 5px;
+    margin-right: 16px;
+    box-shadow: rgb(0, 0, 0, 25%) 0px 5px 20px;
+    background-image: linear-gradient(#36d1dc , #5b86e5 );
+}
+.search_form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.search_form label{   
+    font-size: 19px;
+    font-weight: bold;
+}
+.search_form input{  
+    margin-right: 16px;
+}
+.search_form input, .search_form select{   
+    border: 2px solid black;
+    border-radius: 8px;
+}
+.search_form input:hover, .search_form select:hover {
+    background-color: #1acedb;
+}
+.search_form input:focus, .search_form select:focus {
+    outline: none;
+    background-color: #1acedb;
+}
+.search_btn button, .search_btn a {  
+    background-color: #1acedb;
+    border-radius: 10px;
+    box-shadow: rgb(0, 0, 0, 25%) 5px 5px 10px;
+}
+.search_btn button:hover, .search_btn a:hover { 
+    color: white;
+}
+.operation_form h1 span {
+    color: #4300fc;    
+}
+.operation_form h1 span span {
+    color: #008f37;
+}
+.operation_form label {
+    float: left;
+    width: 130px;
+    font-size: 19px;
+    font-weight: bold;
+}
+.operation_form input[type="text"], textarea {
+    width: 500px;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+.operation_form textarea {
+    height: 150px;
+}
+.operation_form input:hover, textarea:hover {
+    background-color: #396fe4;
+}
+.operation_form input:focus, textarea:focus {
+    outline: none;
+    background-color: #396fe4;
+}
+.operation_button {
+    font-size:18px;
+    background-color: #396fe4;
+    border-radius: 10px;
+    box-shadow: rgb(0, 0, 0, 25%) 0px 0px 10px;
+}
+.operation_button:hover {
+    color: white;
+}
+.table-responsive {
+    max-height: 840px; 
+    border-radius: 5px;
+    box-shadow: rgb(0, 0, 0, 25%) 0px 5px 20px;
+    background-image: linear-gradient(#36d1dc , #5b86e5 );
+}
+.table-responsive th, .table-responsive td {
+    text-align: center; 
+    vertical-align: middle;
+}
+.table-responsive th {
+    color: white;
+    background-color: rgb(0, 0, 0, 40%);
+}
+.edit {
+    font-size: 20px;
+    color: rgb(255, 115, 0);
+}
+.remove {
+    font-size: 20px;
+    color: rgb(255, 0, 0);
+}
+@media screen and (max-width: 1725px) {
+    .Sauv {
+        flex-direction: column;
+    }
+    .table-responsive {
+        margin-top: 15px;
+    }
+    .search_form {
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 900px) {
+    .operation_form input[type="text"], textarea {
+        width: auto;
+    }   
+}
+@media screen and (max-width: 800px) {    
+    .operation_form label {
+        float: none;
+        width: auto;
+    }
+    .operation_form div {
+        display: flex;
+        flex-direction: column;
+    }  
+}
+@media screen and (max-width: 700px) {    
+    .card {
+        width: 300px;
+        margin: 0;
+    } 
+    .search_form input{  
+        width: 250px;
+        margin-right: 0px;
+    } 
+    .operation_form input[type="text"], textarea {
+        width: 285px;
+    }
+    .table-responsive {
+        width: 300px;
+        margin: 0;
+        margin-top: 10px;
+    }
+}
+@media screen and (max-width: 495px) {    
+    .card {
+        width: 190px;
+        margin: 0;
+    } 
+    .search_form input{  
+        width: 150px;
+        margin-right: 0px;
+    } 
+    .operation_form input[type="text"], textarea {
+        width: 175px;
+    }
+    .table-responsive {
+        width: 190px;
+        margin: 0;
+        margin-top: 10px;
+    }
+}
