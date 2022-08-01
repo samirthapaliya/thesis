@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- For Favicon  -->
+    <link rel="icon" type="image/png" href="../../static/img/navbar/fav.png">
+
+    <!-- Title Tag -->
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
+
+    <!-- Including css -->
+    {% include 'base/base_css.html' %}
+
+    <!-- Content for Page Specific header -->
+    <link href="{% static 'css/customer-navbar.css' %}" rel="stylesheet">
+    {% block additional_head %}
+
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <!-- For Navbar -->
+    {% include 'components/customer-navbar.html' %}
+
+    <!-- Main Content -->
+    <main>
+        {% block main_content %}
+
+        {% endblock %}
+    </main>
+    {% comment %} {% if messages %} {% endcomment %}
+    {% include 'components/display_messages.html' %}
+    {% comment %} {% endif %} {% endcomment %}
+    <div id="preloader"></div>
+    <!--Back To Top-->
+    <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
+    
+    <!-- Including all javascript -->
+    {% include 'base/base_js.html' %}
+
+    <!-- Content for Page Specific Extra content like:javascript -->
+    <script src="{% static 'JS/customer_navbar.js' %}"></script>
+    {% block additional_body %}
+
+    {% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- For Favicon  -->
+    <!-- <link rel="icon" type="image/png" href=""> -->
+
+    <!-- Title Tag -->
+    <title>
+        {% block title %}
+
+        {% endblock %}
+    </title>
+
+    <!-- Including css -->
+    {% include 'base/base_css.html' %}
+
+    <!-- Content for Page Specific header -->
+    <link href="{% static 'css/admin_nav_offcanvas.css' %}" rel="stylesheet">
+    {% block additional_head %}
+
+    {% endblock %}
+
+</head>
+
+<body>
+     <!--For navbar with offcanvas-->
+    {% include 'components/admin_nav_offcanvas.html' %}
+
+     <!-- Main Content -->
+    <main>
+        {% block main_content %}
+
+        {% endblock %}
+    </main>
+
+    <!-- Including all javascript -->
+    {% include 'base/base_js.html' %}
+
+    <!-- Content for Page Specific Extra content like:javascript -->
+    <script src="{% static 'js/nav_offcanvas.js' %}"></script>
+    {% block additional_body %}
+
+    {% endblock %}
+
+</body>
+
+</html>
