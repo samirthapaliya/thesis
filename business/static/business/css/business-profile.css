@@ -1,0 +1,355 @@
+/*--------------------------------------------------------------
+# Business Profile
+--------------------------------------------------------------*/
+a {
+  text-decoration: none;
+}
+
+.profile-banner {
+  width: 100%;
+  height: 300px;
+  background-position: center;
+  position: relative;
+  background-color: #252932;
+  border-bottom: 4px solid #fff;
+  box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-container {
+  height: 300px;
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  position: relative;
+  margin: 0px auto;
+  margin-top: 196px;
+  border: 4px solid #f3f3f3;
+}
+
+.profile-actions {
+  position: absolute;
+  bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .profile-actions {
+    top: 20px;
+    right: 3px;
+  }
+}
+
+.user-profile-2 {
+  margin-top: 50px;
+}
+
+.user-profile-sidebar {
+  margin: 0 0 20px 0;
+}
+
+.user-profile-sidebar .user-identity {
+  margin: 20px 0 0 0;
+}
+
+.user-profile-sidebar img {
+  width: 90px;
+}
+
+.account-status-data {
+  text-align: center;
+  padding: 10px 0;
+  border-top: 1px dashed #ddd;
+  border-bottom: 1px dashed #ddd;
+  margin: 10px 0 20px 0;
+}
+
+.account-status-data h5 {
+  font-size: 11px;
+  line-height: 150%;
+  color: #909090;
+}
+
+.user-button {
+  margin: 15px 0;
+}
+
+.user-button .btn {
+  margin: 5px 0;
+}
+
+#social {
+  padding: 10px;
+  background: #e5e9ec;
+  text-align: center;
+}
+
+#social a:hover {
+  text-decoration: none;
+}
+
+.tab-pane {
+  padding-top: 20px;
+}
+
+.user-message {
+  width: 50px;
+  height: 50px;
+}
+
+/*--------------------------------------------------------------
+# Services card
+--------------------------------------------------------------*/
+.primary {
+  background-color: #f8fbfe;
+}
+.services .icon-box {
+  text-align: center;
+  padding: 30px 5px 40px 5px;
+  transition: all ease-in-out 0.3s;
+  background: #fff;
+  box-shadow: 0px 5px 90px 0px rgba(110, 123, 131, 0.05);
+}
+
+.services .icon-box .icon {
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: ease-in-out 0.3s;
+  position: relative;
+}
+
+.services .icon-box .icon i {
+  font-size: 36px;
+  transition: 0.5s;
+  position: relative;
+}
+
+.services .icon-box .icon svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.services .icon-box .icon svg path {
+  transition: 0.5s;
+  fill: #f5f5f5;
+}
+
+.services .icon-box h4 {
+  font-weight: 500;
+  margin: 10px 0 10px 0;
+  font-size: 20px;
+}
+
+.services .icon-box h4 a {
+  color: #124265;
+  transition: ease-in-out 0.3s;
+}
+
+.services .icon-box p {
+  line-height: 24px;
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+.services .icon-box:hover {
+  border-color: #fff;
+  box-shadow: 0px 0 35px 0 rgba(0, 0, 0, 0.08);
+}
+
+.services .iconbox-blue i {
+  color: #47aeff;
+}
+
+.services .iconbox-blue:hover .icon i {
+  color: #fff;
+}
+
+.services .iconbox-blue:hover .icon path {
+  fill: #47aeff;
+}
+
+.services .iconbox-orange i {
+  color: #ffa76e;
+}
+
+.services .iconbox-orange:hover .icon i {
+  color: #fff;
+}
+
+.services .iconbox-orange:hover .icon path {
+  fill: #ffa76e;
+}
+
+.services .iconbox-pink i {
+  color: #e80368;
+}
+
+.services .iconbox-pink:hover .icon i {
+  color: #fff;
+}
+
+.services .iconbox-pink:hover .icon path {
+  fill: #e80368;
+}
+
+.services .iconbox-yellow i {
+  color: #ffbb2c;
+}
+
+.services .iconbox-yellow:hover .icon i {
+  color: #fff;
+}
+
+.services .iconbox-yellow:hover .icon path {
+  fill: #ffbb2c;
+}
+
+.services .iconbox-red i {
+  color: #ff5828;
+}
+
+.services .iconbox-red:hover .icon i {
+  color: #fff;
+}
+
+.services .iconbox-red:hover .icon path {
+  fill: #ff5828;
+}
+
+.services .iconbox-teal i {
+  color: #11dbcf;
+}
+
+.services .iconbox-teal:hover .icon i {
+  color: #fff;
+}
+
+.services .iconbox-teal:hover .icon path {
+  fill: #11dbcf;
+}
+
+/*--------------------------------------------------------------
+# Review CSS
+--------------------------------------------------------------*/
+.review_form {
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 16px;
+}
+.review_form form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+.comment_div {
+  display: flex;
+  flex-direction: column;
+}
+#id_comment {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 2px 5px 2px 5px;
+  height: 150px;
+}
+#id_comment:focus {
+  background: #f9f8fd;
+}
+
+.review_button {
+  background-color: #008f37;
+  border-radius: 20px;
+  box-shadow: rgb(51, 50, 50) 2px 2px 5px;
+  padding: 3px 20px 3px 20px;
+}
+.form_closer {
+  background-color: red;
+  border-radius: 20px;
+  box-shadow: rgb(51, 50, 50) 2px 2px 5px;
+  padding: 3px 20px 3px 20px;
+}
+.reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-left: 10%;
+  margin-right: 10%;
+  height: 480px;
+}
+.comment_editor {
+  background-color: orange;
+  border-radius: 20px;
+  box-shadow: rgb(51, 50, 50) 2px 2px 5px;
+  padding: 3px 20px 3px 20px;
+}
+.customer_reviews {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  align-items: flex-start;
+}
+.customer_image {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.customer_image img {
+  height: 50px;
+  width: 50px;
+}
+.customer_image .rated {
+  color: #ff9529;
+}
+.customer_image .not_rated {
+  color: #ff9529;
+}
+
+/* 
+*-----------------------------------
+* Overall Rating Display
+*-----------------------------------
+ */
+
+.stars-outer {
+  position: relative;
+  display: inline-block;
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-outer::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #ccc;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #f8ce0b;
+}
+
+/* 
+*-----------------------------------
+* Bookmark
+*-----------------------------------
+ */
+.bookmark-icon {
+  color: #0b2ef8;
+}

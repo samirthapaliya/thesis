@@ -1,0 +1,186 @@
+main {
+  background-color: #f8fbfe;
+}
+
+.ratings span {
+  color: orange;
+}
+
+.strike-text {
+  color: red;
+  text-decoration: line-through;
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+}
+.spec-1 {
+  color: #938787;
+  font-size: 15px;
+}
+
+h5 {
+  font-weight: 400;
+}
+
+.para {
+  font-size: 16px;
+}
+
+.profile-image img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.verified {
+color: #1C9CEA;
+font-size: small;
+margin-left: -0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .product-image {
+    /* display: none; */
+    height: 250px;
+  }
+}
+
+.bookmark-icon {
+  color: #f5c518;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+
+.business-card {
+  
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+}
+
+/* 
+*-----------------------------------
+* Rating Star Showing
+*-----------------------------------
+ */
+
+.stars-outer {
+  position: relative;
+  display: inline-block;
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-outer::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #ccc;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #f8ce0b;
+}
+
+/*--------------------------------------------------------------
+# Search Form And Search Background Image
+--------------------------------------------------------------*/
+.search-place {
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px black;
+  position: absolute;
+  bottom: 110px;
+  left: 25%;
+  width: 50%;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+
+.search-form {
+  position: relative;
+  background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),
+    url(../images/delivery.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 30vh;
+}
+
+.search-bar-group {
+  position: absolute;
+  left: 25%;
+  width: 50%;
+  bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .search-form {
+    min-height: 30vh;
+  }
+  .search-bar-group {
+    left: 15%;
+    width: 70%;
+  }
+  .search-place {
+    left: 15%;
+    width: 70%;
+    bottom: 100px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .search-bar-group {
+    left: 10%;
+    width: 80%;
+  }
+  .search-place {
+    left: 10%;
+    width: 80%;
+    bottom: 100px;
+  }
+}
