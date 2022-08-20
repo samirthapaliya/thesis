@@ -1,8 +1,7 @@
 {% load static %}
 <div class="container-fluid" id="Header">
     <nav class="navbar navbar-expand-sm">
-        <h1>       
-            <a class="navbar-brand fw-bold m-0" href="#">Ghar<span>Dailo</span></a>        
+        <h1>             
             <button class="btn m-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" id="offcanvas_opener" onclick="hideOp()">
                 <span class="fas fa-angle-double-right"></span>
             </button> 
@@ -22,7 +21,7 @@
 </div>
 <div class="offcanvas offcanvas-start sidebar_nav" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
     <div class="offcanvas-header ps-0 pe-2 py-0">
-        <img class="img-fluid rounded-circle" src="{% static 'img/navbar/logo.png' %}" id="Logo" />  
+        <img class="img-fluid" src="{% static 'img/navbar/logo.png' %}" style="width: auto;" id="Logo" />  
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close" id="offcanvas-close" onclick="showOp()"></button>
     </div>
     <div class="offcanvas-body py-0">

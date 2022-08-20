@@ -1,0 +1,73 @@
+{% extends 'base/admin_layout.html' %}
+{% load static %}
+{% block title %}
+    Admin Business View
+{% endblock %}
+{% block additional_head %}
+<link href="{% static 'css/admin_business_view.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block main_content %}   
+<div class="container-fluid mt-3">
+    <a href="{% url 'admindashboard:show-all-business' %}"><span class="fas fa-arrow-left back mt-2"></span></a>
+    <div class="profile mt-2 mb-5"> 
+        {% if pb.cover_picture %}
+            <div  class="cover_pic">
+                <img class="img-fluid" src="{{pb.cover_picture.url}}"/> 
+            </div>  
+        {% else %}
+            <div class="alert alert-danger mb-3" role="alert">This business don't have cover picture.</div>
+        {% endif %}
+        {% if pb.logo %}
+            <div class="logo"> 
+                <img class="img rounded-circle" src="{{pb.logo.url}}"/> 
+            </div>
+        {% else %}
+            <div class="alert alert-danger mb-3" role="alert">This business don't have logo.</div>
+        {% endif %}
+    </div> 
+    <div class="hires mt-2 p-3">
+        <div class="table-responsive mt-5">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Customer Profile</th>
+                        <th scope="col">Service</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Modify Status</th>
+                        <th scope="col">DateTime</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td scope="row">1.</td>
+                            <td>{{hire.customer.name}}</td>
+                            <td>                          
+                                {% if hire.customer.image.url != "/media/static/Image/default.jpg" %}
+                                    <img class="img-fluid rounded-circle" src="{{hire.customer.image.url}}" alt="" />
+                                {% else %}
+                                    <img class="img-fluid rounded-circle" src="/{{hire.customer.image}}" alt="" />
+                                {% endif %}
+                            </td>
+                            <td><span class="{{hire.business_service.service.icon_text}}"></span>  {{hire.business_service.service}}</td>
+                            <td>{{hire.get_status_display}}</td>
+                            <td>
+                                <form class="form hire_status_form", method="POST">
+                                    {% csrf_token %}
+                                    {{form.status}}                                   
+                                    <button  class="btn mt-3 change_status" type="submit">Modify</button>   
+                                </form>  
+                            </td>
+                            <td>{{hire.date_time}}</td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>  
+    </div>
+{% endblock %}
+{% block additional_body %}
+{% endblock %}
+
+

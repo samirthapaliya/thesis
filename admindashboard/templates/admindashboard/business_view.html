@@ -1,0 +1,364 @@
+{% extends 'base/admin_layout.html' %}
+{% load static %}
+{% block title %}
+    Admin Business View
+{% endblock %}
+{% block additional_head %}
+<link href="{% static 'css/admin_business_view.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block main_content %}   
+<div class="container-fluid mt-3">
+    <a href="{% url 'admindashboard:show-all-business' %}"><span class="fas fa-arrow-left back mt-2"></span></a>
+    <div class="profile mt-2 {% if pb.logo and pb.cover_picture %} mb-5  {% endif %}"> 
+        {% if pb.cover_picture %}
+            <div  class="cover_pic">
+                <img class="img-fluid" src="{{pb.cover_picture.url}}"/> 
+            </div>  
+        {% else %}
+            <div class="alert alert-danger mb-3" role="alert">This business don't have cover picture.</div>
+        {% endif %}
+        {% if pb.logo %}
+            <div class="logo"> 
+                <img class="img rounded-circle" src="{{pb.logo.url}}"/> 
+            </div>
+        {% else %}
+            <div class="alert alert-danger mb-3" role="alert">This business don't have logo.</div>
+        {% endif %}
+    </div>
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="navigate m-auto {% if pb.logo and pb.cover_picture %} mt-5  {% endif %}">
+            <button type="button" class="btn find" onclick="navigate(0)"><span class="fas fa-info-circle me-2"></span>Details</button>
+            <div class="Line"></div>
+            <button type="button" class="btn find" onclick="navigate(1)"><span class="fas fa-tools me-2"></span>Services<span class="counter">{{services_count}}</span></button>
+            <div class="Line"></div>
+            <button type="button" class="btn find" onclick="navigate(2)"><span class="fas fa-images me-2"></span>Gallery<span class="counter">{{gallery_count}}</span></button>
+            <div class="Line"></div>
+            <button type="button" class="btn find" onclick="navigate(3)"><span class="fas fa-user-secret me-2"></span>Workers<span class="counter">{{workers_count}}</span></button>
+            <div class="Line"></div>
+            <button type="button" class="btn find" onclick="navigate(4)"><span class="fas fa-hands-helping me-2"></span>Hires<span class="counter">{{hires_count}}</span></button>
+            <div class="Line"></div>
+            <button type="button" class="btn find" onclick="navigate(5)"><span class="fas fa-bell me-2"></span>Messages<span class="counter">{{notifications_count}}</span></button>
+            <div class="Line"></div>
+            <button type="button" class="btn find" onclick="navigate(6)"><span class="fas fa-search-plus me-2"></span>Reviews<span class="counter">{{reviews_count}}</span></button>
+            <div class="Line"></div>
+            <button type="button" class="btn find" onclick="navigate(7)"><span class="fas fa-bookmark me-2"></span>Bookmarks<span class="counter">{{bookmarks_count}}</span></button>
+        </div>
+    </div>    
+    <div class="container-fluid mt-3">
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="success_message alert alert-success mb-3 text-center" role="alert"><span class="fas fa-check-circle me-2"></span>{{message}}</div>
+            {% endif %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="error_message alert alert-danger mb-3 text-center" role="alert"><span class="fas fa-exclamation-triangle me-2"></span>{{message}}</div>
+            {% endif %}
+        {% endfor %}       
+    </div>    
+    <div class="container-fluid details navdiv ms-auto mt-3 p-3">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                    <tr>
+                        <th scope="row">User Name:</th>
+                        <td>{{pb.user.username}}</td>
+                    </tr>                    
+                    <tr>
+                        <th scope="row">Email:</th>
+                        <td>{{pb.user.email}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Name:</th>
+                        <td>{{pb.name}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Province:</th>
+                        <td>{{pb.province}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">District:</th>
+                        <td>{{pb.district}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Street:</th>
+                        <td>{{pb.street_address}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Contact:</th>
+                        <td>{{pb.phone}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Solo:</th>
+                        <td>{{pb.is_solo}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Active:</th>
+                        <td>{{pb.is_active}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Verified:</th>
+                        <td>{{pb.is_verified}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Description:</th>
+                        <td>{{pb.description}}</td>
+                    </tr>
+            </table>
+        </div> 
+    </div>
+    <div class="services navdiv mt-3 p-3">
+        {% if services_count > 0 %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Logo</th>
+                            <th scope="col">Service</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in services %}
+                            <tr>
+                                <td scope="row" class="Numbering1"></td>
+                                <td><span class="fas {{i.service.icon_text}}"></span></td>
+                                <td>{{i.service.name}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> 
+        {% else %}
+            <div class="d-flex justify-content-center"><div class="alert alert-danger" role="alert">This business doesn't have services.</div></div>
+        {% endif %}
+    </div>   
+    <div class="gallery navdiv mt-3 p-3"> 
+        {% if gallery_count > 0 %}
+            {% for i in gallery %}    
+                <img class="img-fluid me-2 mb-3" src="{{i.picture.url}}"/>
+            {% endfor %}
+        {% else %}
+            <div class="d-flex justify-content-center"><div class="alert alert-danger" role="alert">This business doesn't have pictures.</div></div>
+        {% endif %}
+    </div>
+    <div class="workers navdiv mt-3 p-3">   
+        {% if workers_count > 0 %} 
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Profile</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Active</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in workers %}
+                            <tr>
+                                <td scope="row" class="Numbering2"></td>
+                                <td>{{i.name}}</td>
+                                <td><img class="img-fluid rounded-circle" src="{{i.picture.url}}" /></td>
+                                <td>{{i.phone}}</td>
+                                <td>{{i.is_active}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> 
+        {% else %}
+            <div class="d-flex justify-content-center"><div class="alert alert-danger" role="alert">This business doesn't have workers.</div></div>
+        {% endif %}
+    </div>
+
+    <div class="hires navdiv mt-3 p-3">
+        {% if hires_count > 0 %} 
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Customer Profile</th>
+                            <th scope="col">Service</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Modify Status</th>
+                            <th scope="col">DateTime</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in hires %}
+                            <tr>
+                                <td scope="row" class="Numbering3"></td>
+                                <td>{{i.customer.name}}</td>
+                                <td>                          
+                                    {% if i.customer.image.url != "/media/static/Image/default.jpg" %}
+                                        <img class="img-fluid rounded-circle" src="{{i.customer.image.url}}" alt="" />
+                                    {% else %}
+                                        <img class="img-fluid rounded-circle" src="/{{i.customer.image}}" alt="" />
+                                    {% endif %}
+                                </td>
+                                <td><span class="fas {{i.business_service.service.icon_text}}"></span>  {{i.business_service.service}}</td>
+                                <td>{{i.get_status_display}}</td>
+                                <td>                         
+                                    <a href="{% url 'admindashboard:change-hire-status' pb.id i.id %}" class="btn mt-3 change_status" type="submit">Change Status</a>
+                                </td>
+                                <td>{{i.date_time}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>  
+        {% else %}
+            <div class="d-flex justify-content-center"><div class="alert alert-danger" role="alert">Customers haven't hired this business yet.</div></div>
+        {% endif %}
+    </div>
+    <div class="notifications navdiv mt-3 p-3">
+        {% if notifications_count > 0 %} 
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Customer Profile</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Message</th>
+                            <th scope="col">Read</th>
+                            <th scope="col">DateTime</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in notifications %}
+                            <tr>
+                                <td scope="row" class="Numbering4"></td>
+                                <td>{{i.from_user.customer.name}}</td>
+                                <td>                          
+                                    {% if i.from_user.customer.image.url != "/media/static/Image/default.jpg" %}
+                                        <img class="img-fluid rounded-circle" src="{{i.from_user.customer.image.url}}" alt="" />
+                                    {% else %}
+                                        <img class="img-fluid rounded-circle" src="/{{i.from_user.customer.image.url}}" alt="" />
+                                    {% endif %}
+                                </td>
+                                <td>{{i.title}}</td>
+                                <td>{{i.message}}</td>
+                                <td>{{i.has_seen}}</td>
+                                <td>{{i.datetime}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>  
+        {% else %}
+            <div class="d-flex justify-content-center"><div class="alert alert-danger" role="alert">This business hasn't send messages to customers.</div></div>
+        {% endif %}
+    </div>
+    <div class="reviews navdiv mt-3 p-3">
+        {% if reviews_count > 0 %} 
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Customer Profile</th>
+                            <th scope="col">Comment</th>
+                            <th scope="col">Rating</th>
+                            <th scope="col">DateTime</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in reviews %}
+                            <tr>
+                                <td scope="row" class="Numbering5"></td>
+                                <td>{{i.customer.name}}</td>
+                                <td>                            
+                                    {% if i.customer.image.url != "/media/static/Image/default.jpg" %}
+                                        <img class="img-fluid rounded-circle" src="{{i.customer.image.url}}" alt="" />
+                                    {% else %}
+                                        <img class="img-fluid rounded-circle" src="/{{i.customer.image}}" alt="" />
+                                    {% endif %}
+                                </td>
+                                <td>{{i.comment}}</td>
+                                <td>
+                                    {% if i.rating >= 1 %}
+                                    <span class="fas fa-star"></span>
+                                    {% else %}
+                                    <span class="far fa-star"></span>
+                                    {% endif %}
+
+                                    {% if i.rating >= 2 %}
+                                    <span class="fas fa-star"></span>
+                                    {% else %}
+                                    <span class="far fa-star"></span>
+                                    {% endif %}
+
+                                    {% if i.rating >= 3 %}
+                                    <span class="fas fa-star"></span>
+                                    {% else %}
+                                    <span class="far fa-star"></span>
+                                    {% endif %}
+
+                                    {% if i.rating >= 4 %}
+                                    <span class="fas fa-star"></span>
+                                    {% else %}
+                                    <span class="far fa-star"></span>
+                                    {% endif %}
+
+                                    {% if i.rating >= 5 %}
+                                    <span class="fas fa-star"></span>
+                                    {% else %}
+                                    <span class="far fa-star"></span>
+                                    {% endif %}
+                                 </td>
+                                <td>{{i.created_at}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> 
+        {% else %}
+            <div class="d-flex justify-content-center"><div class="alert alert-danger" role="alert">Customers haven't reviewed this business yet.</div></div>
+        {% endif %}
+    </div>
+    <div class="bookmarks navdiv mt-3 p-3">
+        {% if bookmarks_count > 0 %} 
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Customer Profile</th>
+                            <th scope="col">DateTime</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in bookmarks %}
+                            <tr>
+                                <td scope="row" class="Numbering6"></td>
+                                <td>{{i.customer.name}}</td> 
+                                <td>
+                                    {% if i.customer.image.url != "/media/static/Image/default.jpg" %}
+                                        <img class="img-fluid rounded-circle" src="{{i.customer.image.url}}" alt="" />
+                                    {% else %}
+                                        <img class="img-fluid rounded-circle" src="/{{i.customer.image}}" alt="" />
+                                    {% endif %}
+                                </td>
+                                <td>{{i.date_time}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> 
+        {% else %}
+            <div class="d-flex justify-content-center"><div class="alert alert-danger" role="alert">Customers haven't bookmarked this business yet.</div></div>
+        {% endif %}
+    </div>
+</div> 
+{% endblock %}
+{% block additional_body %}
+<script src="{% static 'JS/admin_business_view.js' %}"></script>
+{% endblock %}
+
+

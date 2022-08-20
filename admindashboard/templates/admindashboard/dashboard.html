@@ -1,0 +1,137 @@
+{% extends 'base/admin_layout.html' %}
+{% load static %}
+{% block title %}
+    Admin Dashboard
+{% endblock %}
+{% block additional_head %}
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block main_content %}  
+<div class="container-fluid mt-3">
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+        <div class="success_message alert alert-success mb-3 text-center" role="alert"><span class="fas fa-check-circle me-2"></span>{{message}}</div>
+        {% endif %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="error_message alert alert-danger mb-3 text-center" role="alert"><span class="fas fa-exclamation-triangle me-2"></span>{{message}}</div>
+        {% endif %}
+    {% endfor %}       
+</div>    
+<div class="container-fluid Registration mt-3">
+  <div class="Customer">
+    <a href="{% url 'admindashboard:customer-registration' %}"><span class="fas fa-user-friends logo me-1"></span><span class="fas fa-plus plus"></span></a>    
+    <a href="{% url 'admindashboard:customer-registration' %}"><span>Add new Customer</span></a>
+  </div>
+  <div class="Business">
+    <a href="{% url 'admindashboard:business-registration' %}"><span class="fas fa-user-tie logo me-1"></span><span class="fas fa-plus plus"></span></a>    
+    <a href="{% url 'admindashboard:business-registration' %}"><span>Add new Business</span></a>
+  </div>
+  <div class="Admin">
+    <a href="{% url 'admindashboard:staff-registration' %}"><span class="fas fa-user-secret logo me-1"></span><span class="fas fa-plus plus"></span></a>    
+    <a href="{% url 'admindashboard:staff-registration' %}"><span>Add new Administrator</span></a>
+  </div>
+</div>
+<div class="container-fluid mt-5 ProgressBars" id="Items">
+  <div class="Bar">
+    <div class="text service"><span class="fas fa-tools me-2 logo"></span>Services</div>
+    <div class="circle">
+      <a href="{% url 'admindashboard:service-list' %}">
+        <div class="bar"></div>
+        <div class="box"><span id="bs">{{service}}</span></div>
+      </a> 
+    </div>
+  </div>
+  <div class="Bar">
+    <div class="text"><span class="fas fa-users me-2 logo"></span>Users</div>
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span id="bu">{{user}}</span></div>
+    </div>
+  </div>       
+  <div class="Bar">
+    <div class="text"><span class="fas fa-user-secret me-2 logo"></span>administrators</div>
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span id="bc">{{admin}}</span></div>
+    </div>
+  </div>  
+  <div class="Bar">
+    <div class="text"><span class="fas fa-user-friends me-2 logo"></span>Customers</div>
+    <div class="circle">
+      <a href="{% url 'admindashboard:my-admin-customer-list-view' %}">
+        <div class="bar"></div>
+        <div class="box"><span id="bc">{{customer}}</span></div>
+      </a>
+    </div>
+  </div>  
+  <div class="Bar">
+    <div class="text"><span class="fas fa-user-tie me-2 logo"></span>Businesses</div>
+    <div class="circle">
+      <a href="{% url 'admindashboard:show-all-business' %}">
+        <div class="bar"></div>
+        <div class="box"><span id="bb">{{business}}</span></div>
+      </a>
+    </div>
+  </div>   
+  <div class="Bar">
+    <div class="text"><span class="fas fa-user me-2 logo"></span>Workers</div>
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span id="bw">{{worker}}</span></div>
+    </div>
+  </div>    
+  <div class="Bar">
+    <div class="text"><span class="fas fa-images me-2 logo"></span>Pictures</div>
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span id="bg">{{gallery}}</span></div>
+    </div>
+  </div>   
+  <div class="Bar">
+    <div class="text"><span class="fas fa-hands-helping me-2 logo"></span>Hires</div>
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span id="bh">{{hiring}}</span></div>
+    </div>
+  </div>  
+  <div class="Bar">
+    <div class="text"><span class="fas fa-search-plus me-2 logo"></span>Reviews</div>
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span id="br">{{review}}</span></div>
+    </div>
+  </div> 
+  <div class="Bar">
+    <div class="text"><span class="fas fa-bell me-2 logo"></span>Notifications</div>
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span id="bn">{{notification}}</span></div>
+    </div>
+  </div>       
+  <div class="Bar">
+    <div class="text"><span class="fas fa-bookmark me-2 logo"></span>Bookmarks</div>
+    <div class="circle">
+      <div class="bar"></div>
+      <div class="box"><span id="bn">{{bookmark}}</span></div>
+    </div>
+  </div>         
+  <div class="Bar">
+    <div class="text"><span class="fas fa-exclamation-circle me-2 logo"></span>Reports</div>
+    <div class="circle">
+      <a href="{% url 'admindashboard:report-user' %}">
+        <div class="bar"></div>
+        <div class="box"><span id="bn">{{report}}</span></div>
+      </a>
+    </div>
+  </div>   
+</div> 
+{% endblock %}
+
+{% block additional_body %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js" integrity="sha512-6kvhZ/39gRVLmoM/6JxbbJVTYzL/gnbDVsHACLx/31IREU4l3sI7yeO0d4gw8xU5Mpmm/17LMaDHOCf+TvuC2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+  <script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}
+
+

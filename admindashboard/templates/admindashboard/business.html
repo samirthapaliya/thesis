@@ -1,0 +1,96 @@
+{% extends 'base/admin_layout.html' %}
+{% load static %}
+{% block title %}
+    Admin Business
+{% endblock %}
+{% block additional_head %}
+    <link href="{% static 'css/admin_business.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block main_content %}   
+<div class="search_box mt-3">
+    <form class="form" method="GET">
+        {{business_filter.form.name}}
+        <button class="btn" type="submit"><span class="fas fa-search"></span></button>
+    </form>
+</div>
+<div class="table-responsive mt-3">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">User</th>
+                <th scope="col">Name</th>
+                <th scope="col">Logo</th>
+                <th scope="col">District</th>
+                <th scope="col">Province</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Active</th>
+                <th scope="col">Modify Activeness</th>
+                <th scope="col">Verified</th>
+                <th scope="col">Modify Verification</th>
+                <th scope="col">View</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in businesses %}
+                <tr>
+                    <td scope="row" class="Numbering"></td>
+                    <td>{{i.user.username}}</td>
+                    <td>{{i.name}}</td>
+                    <td>
+                        {% if i.logo %}
+                            <img class="img-fluid rounded-circle" src="{{i.logo.url}}" />
+                        {% else %}
+                            No logo
+                        {% endif %}
+                    </td>
+                    <td>{{i.district}}</td>
+                    <td>{{i.province}}</td>
+                    <td>{{i.phone}}</td>
+                    <td>                        
+                        {% if i.is_active == True %}
+                        <span class="fas fa-check-circle"></span>
+                        {% else %}
+                        <span class="fas fa-times-circle"></span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if i.is_active == False %}
+                        <a href="{% url 'admindashboard:make-business-active' i.id %}" class="active" onclick="return confirm('Do you want activate this business?')"><span class="fas fa-check-circle"></span></a>
+                        {% else %}
+                        <a href="{% url 'admindashboard:make-business-inactive' i.id %}" class="inactive" onclick="return confirm('Do you want inactivate this business?')"><span class="fas fa-times-circle"></span></a>
+                        {% endif %}
+                    </td>
+                    <td>                        
+                        {% if i.is_verified == True %}
+                        <span class="fas fa-check-circle"></span>
+                        {% else %}
+                        <span class="fas fa-times-circle"></span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if i.is_verified == False %}
+                        <a href="{% url 'admindashboard:verify-business' i.id %}" class="verified" onclick="return confirm('Do you want to make verified this business?')"><span class="fas fa-check-circle"></span></a>
+                        {% else %}
+                        <a href="{% url 'admindashboard:unverify-business' i.id %}" class="not_verified" onclick="return confirm('Do you want to make unverified of this business?')"><span class="fas fa-times-circle"></span></a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'admindashboard:view-business' i.id %}" class="edit"><span class="fas fa-eye me-3 mb-3 edit"></span></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div> 
+{% endblock %}
+
+{% block additional_body %}
+<script>
+    document.getElementsByTagName("input")[0].placeholder="Search Businesses"
+</script>
+<script src="{% static 'js/numbering.js' %}"></script>
+{% endblock %}
+
+

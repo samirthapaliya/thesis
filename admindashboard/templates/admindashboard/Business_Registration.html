@@ -1,0 +1,40 @@
+{% extends 'base/admin_layout.html' %}
+{% load static %}
+{% block title %}
+    Admin Business Registration
+{% endblock %}
+{% block additional_head %}
+<link href="{% static 'css/admin_business_r.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block main_content %}  
+<a href="{% url 'admindashboard:my-admin-dashboard' %}"><span class="fas fa-arrow-left back mt-2"></span></a>
+<div class="container-fluid d-flex justify-content-center mt-3">
+    <form class="p-3" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1 class="border-bottom text-center mb-4">Add new business user</h1>
+        <div class="form_inputs">
+            <div class="mb-3">
+                <label class="form-label">Username:</label>
+                {{u_form.username}}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email:</label>
+                {{u_form.email}}
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Business Name:</label>
+                {{u_form.business_name}}
+            </div>             
+        </div>
+        <div class="m-auto text-center">
+            <button class="btn operation_button" type="submit">Add</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block additional_body %}
+{% endblock %}
+
+
